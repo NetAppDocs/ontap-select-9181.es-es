@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: reference_chk_deploy_req_info.html 
+keywords: ontap select, deploy, pre-installation, vmware 
+summary: Antes de instalar la utilidad de administración Deploy en un entorno VMware, revisa los requisitos básicos y prepárate para una implementación exitosa. 
+---
+= Información necesaria para la instalación de la utilidad ONTAP Select Deploy
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Antes de instalar la utilidad de administración Deploy en un entorno de hipervisor, revisa la información de configuración necesaria y la información de configuración de red opcional para prepararte para una implementación exitosa.
+
+
+
+== Información de configuración necesaria
+
+Como parte de la planificación del despliegue, debes determinar la información de configuración necesaria antes de instalar la utilidad de administración ONTAP Select Deploy.
+
+[cols="40,60"]
+|===
+| Información obligatoria | Descripción 
+
+
+| Nombre de la máquina virtual Deploy | Identificador a utilizar para la máquina virtual. 
+
+
+| Nombre del host del hipervisor | Identificador del host hipervisor VMware ESXi o KVM donde está instalada la utilidad Deploy. 
+
+
+| Nombre del almacén de datos | Identificador del almacén de datos del hipervisor que contiene los archivos de la máquina virtual (se requieren aproximadamente 40GB). 
+
+
+| Red para la máquina virtual | Identificador de la red a la que está conectada la máquina virtual Deploy. 
+|===
+
+
+== Información opcional sobre la configuración de red
+
+La máquina virtual Deploy se configura utilizando DHCP por defecto. Sin embargo, si es necesario, puedes configurar manualmente la interfaz de red para la máquina virtual.
+
+[cols="35,65"]
+|===
+| Información de red | Descripción 
+
+
+| Host name | Identificador de la máquina anfitriona. 
+
+
+| Dirección IP del host | Dirección IPv4 estática de la máquina anfitriona. 
+
+
+| Máscara de subred | Máscara de subred, basada en la red de la que forma parte la máquina virtual. 
+
+
+| Pasarela | Puerta de enlace predeterminada o router. 
+
+
+| Servidor DNS primario | Servidor DNS primario. 
+
+
+| Servidor DNS secundario | Servidor DNS secundario. 
+
+
+| Buscar dominios | Lista de los dominios de búsqueda a utilizar. 
+|===

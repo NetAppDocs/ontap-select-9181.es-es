@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: concept_api_how_access.html 
+keywords: rest api, deploy rest api, rest, access, accessing, how to access 
+summary: Debido a la flexibilidad inherente de los servicios web REST, se puede acceder a la API de REST ONTAP Select Deploy de varias maneras diferentes. 
+---
+= Cómo acceder a la API de ONTAP Select Deploy
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Debido a la flexibilidad inherente de los servicios web REST, se puede acceder a la API de REST ONTAP Select Deploy de varias maneras diferentes.
+
+
+NOTE: La API de REST incluida con ONTAP Select Deploy tiene asignado un número de versión. El número de versión de la API es independiente del número de versión de Deploy. La utilidad de administración de ONTAP Select 9.17.1 Deploy incluye la versión 3 de la API de REST.
+
+
+
+== Implementa la interfaz de usuario nativa de la utilidad
+
+La principal forma de acceder a la API es a través de la interfaz web de usuario de ONTAP Select Deploy. El navegador realiza llamadas a la API y reformatea los datos según el diseño de la interfaz de usuario. También accedes a la API mediante la interfaz de línea de comandos de la utilidad Deploy.
+
+
+
+== Página de documentación en línea de ONTAP Select Deploy
+
+La página de documentación en línea de ONTAP Select Deploy ofrece un punto de acceso alternativo al usar un navegador. Además de permitir ejecutar llamadas a la API directamente, la página también incluye una descripción detallada de la API, incluidos los parámetros de entrada y otras opciones para cada llamada. Las llamadas a la API están organizadas en varias áreas o categorías funcionales diferentes.
+
+
+
+== Programa personalizado
+
+Puedes acceder a la API de Deploy utilizando diversos lenguajes y herramientas de programación. Entre las opciones más populares se encuentran Python, Java y cURL. Un programa, script o herramienta que utilice la API actúa como cliente de servicios web REST. El uso de un lenguaje de programación te permite comprender mejor la API y te da la oportunidad de automatizar las implementaciones de ONTAP Select.

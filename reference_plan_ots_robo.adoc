@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_ots_robo.html 
+keywords: plan, planning, remote and branch office, robo 
+summary: 'Puedes desplegar ONTAP Select en un entorno de oficina remota/sucursal (ROBO). Como parte de la planificación de un despliegue ROBO, debes seleccionar la configuración que soporte tus objetivos.' 
+---
+= Implementaciones remotas y de sucursales de ONTAP Select
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Puedes desplegar ONTAP Select en un entorno de oficina remota/sucursal (ROBO). Como parte de la planificación de un despliegue ROBO, debes seleccionar la configuración que soporte tus objetivos.
+
+Hay dos configuraciones principales disponibles cuando se despliega ONTAP Select en un entorno ROBO.
+
+
+NOTE: Puedes usar cualquier licencia de VMware vSphere al implementar ONTAP Select.
+
+.ONTAP Select clúster de dos nodos con ONTAP HA
+El clúster de dos nodos ONTAP Select consta de un par de HA y es ideal para despliegues ROBO.
+
+.ONTAP Select clúster de un solo nodo con soporte VMware
+Puedes desplegar un clúster de un solo nodo ONTAP Select en un entorno ROBO. Aunque un solo nodo carece de capacidad de HA nativa, puedes desplegar el clúster de una de las siguientes formas para proporcionar protección de almacenamiento:
+
+* Almacenamiento externo compartido mediante VMware HA
+* VMware vSAN
+
+
+
+NOTE: Si usas vSAN, debes tener una licencia de VMware vSAN ROBO.

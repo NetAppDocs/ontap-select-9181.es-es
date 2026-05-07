@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: concept_stor_capacity_inc.html 
+keywords: ontap select, deploy, increase storage 
+summary: ONTAP Deploy se puede utilizar para agregar y licenciar almacenamiento adicional para cada nodo en un clúster de ONTAP Select. 
+---
+= Aumentar la capacidad de almacenamiento de ONTAP Select
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ONTAP Deploy se puede utilizar para agregar y licenciar almacenamiento adicional para cada nodo en un clúster de ONTAP Select.
+
+La función de agregar almacenamiento en ONTAP Deploy es la única forma de aumentar el almacenamiento administrado y no se admite la modificación directa de la máquina virtual ONTAP Select. La siguiente figura muestra el icono "+" que inicia el asistente para agregar almacenamiento.
+
+image:ST_05.jpg["Detalles del clúster y del nodo"]
+
+Las siguientes consideraciones son importantes para el éxito de la operación de expansión de capacidad. Agregar capacidad requiere que la licencia existente cubra la cantidad total de espacio (existente más nuevo). Una operación de adición de almacenamiento que haga que el nodo supere su capacidad licenciada fallará. Primero se debe instalar una nueva licencia con capacidad suficiente.
+
+Si se agrega capacidad adicional a un agregado de datos ONTAP Select existente, el nuevo grupo de almacenamiento (almacén de datos) debería tener un perfil de rendimiento similar al del grupo de almacenamiento (almacén de datos) existente. Ten en cuenta que no es posible agregar almacenamiento que no sea SSD a un nodo ONTAP Select instalado con una personalidad similar a AFF (flash habilitado). Tampoco se admite la combinación de almacenamiento DAS y almacenamiento externo.
+
+Si se agrega almacenamiento conectado localmente a un sistema para proporcionar grupos de almacenamiento local (DAS) adicionales, debes crear un grupo RAID y una o varias LUN adicionales. Al igual que con los sistemas FAS, debes asegurarte de que el rendimiento del nuevo grupo RAID sea similar al del grupo RAID original si agregas espacio nuevo al mismo agregado. Si creas un nuevo agregado, la configuración del nuevo grupo RAID podría ser diferente si comprendes bien las implicaciones de rendimiento para el nuevo agregado.
+
+El nuevo espacio se puede agregar al mismo almacén de datos como una extensión si el tamaño total del almacén de datos no supera el tamaño máximo admitido para el almacén de datos. Agregar una extensión al almacén de datos donde ya está instalado ONTAP Select se puede hacer de forma dinámica y no afecta las operaciones del nodo ONTAP Select.
+
+Si el nodo ONTAP Select forma parte de un par de alta disponibilidad, se deben tener en cuenta algunos aspectos adicionales.
+
+En un par de alta disponibilidad (HA), cada nodo contiene una copia espejo de los datos de su compañero. Añadir espacio al nodo 1 requiere que se añada la misma cantidad de espacio a su compañero, el nodo 2, para que todos los datos del nodo 1 se replique en el nodo 2. En otras palabras, el espacio añadido al nodo 2 como parte de la operación de ampliación de capacidad para el nodo 1 no es visible ni accesible en el nodo 2. El espacio se añade al nodo 2 para que los datos del nodo 1 estén totalmente protegidos durante un evento de alta disponibilidad.
+
+Existe una consideración adicional con respecto al rendimiento. Los datos del nodo 1 se replican sincrónicamente en el nodo 2. Por lo tanto, el rendimiento del nuevo espacio (almacén de datos) en el nodo 1 debe coincidir con el rendimiento del nuevo espacio (almacén de datos) en el nodo 2. En otras palabras, agregar espacio en ambos nodos, pero utilizando tecnologías de unidades diferentes o tamaños de grupo RAID diferentes, puede generar problemas de rendimiento. Esto se debe a la operación RAID SyncMirror utilizada para mantener una copia de los datos en el nodo asociado.
+
+Para aumentar la capacidad accesible para el usuario en ambos nodos de un par de alta disponibilidad (HA), se deben realizar dos operaciones de adición de almacenamiento, una para cada nodo. Cada operación de adición de almacenamiento requiere espacio adicional en ambos nodos. El espacio total requerido en cada nodo es igual al espacio requerido en el nodo 1 más el espacio requerido en el nodo 2.
+
+La configuración inicial consta de dos nodos, cada uno con dos almacenes de datos de 30TB de espacio en cada almacén de datos. ONTAP Deploy crea un clúster de dos nodos, donde cada nodo consume 10TB de espacio del almacén de datos 1. ONTAP Deploy configura cada nodo con 5TB de espacio activo por nodo.
+
+La siguiente figura muestra los resultados de una única operación de adición de almacenamiento para el nodo 1. ONTAP Select sigue utilizando la misma cantidad de almacenamiento (15TB) en cada nodo. Sin embargo, el nodo 1 tiene más almacenamiento activo (10TB) que el nodo 2 (5TB). Ambos nodos están totalmente protegidos, ya que cada nodo aloja una copia de los datos del otro nodo. Queda espacio libre adicional en el datastore 1, y el datastore 2 permanece completamente libre.
+
+*Distribución de capacidad: asignación y espacio libre después de una única operación de adición de almacenamiento*
+
+image:ST_06.jpg["Distribución de capacidad: asignación y espacio libre después de una única operación de adición de almacenamiento"]
+
+Dos operaciones adicionales de adición de almacenamiento en el nodo 1 consumen el resto del almacén de datos 1 y una parte del almacén de datos 2 (utilizando el límite de capacidad). La primera operación de adición de almacenamiento consume los 15TB de espacio libre que quedan en el almacén de datos 1. La siguiente figura muestra el resultado de la segunda operación de adición de almacenamiento. En este punto, el nodo 1 tiene 50TB de datos activos bajo gestión, mientras que el nodo 2 tiene los 5TB originales.
+
+*Distribución de capacidad: asignación y espacio libre después de dos operaciones adicionales de adición de almacenamiento para el nodo 1*
+
+image:ST_07.jpg["Distribución de capacidad: asignación y espacio libre después de dos operaciones adicionales de adición de almacenamiento para el nodo 1"]
+
+El tamaño máximo de VMDK utilizado durante las operaciones de adición de capacidad es de 16TB. El tamaño máximo de VMDK utilizado durante las operaciones de creación de clúster sigue siendo de 8TB. ONTAP Deploy crea VMDK con el tamaño correcto según tu configuración (un clúster de un solo nodo o de varios nodos) y la cantidad de capacidad que se añada. Sin embargo, el tamaño máximo de cada VMDK no debe superar los 8TB durante las operaciones de creación de clúster y los 16TB durante las operaciones de adición de almacenamiento.
+
+
+
+== Aumenta la capacidad de ONTAP Select con RAID por software
+
+El asistente para agregar almacenamiento también se puede usar para aumentar la capacidad administrada de los nodos ONTAP Select mediante RAID por software. El asistente solo muestra las unidades DAS SDD disponibles que se pueden asignar como RDM a la máquina virtual ONTAP Select.
+
+Si bien es posible aumentar la capacidad de la licencia en un solo TB, al trabajar con RAID por software, no es posible aumentarla físicamente en un solo TB. Al igual que al agregar discos a una matriz FAS o AFF, ciertos factores determinan la cantidad mínima de almacenamiento que se puede agregar en una sola operación.
+
+
+NOTE: En un par de HA, añadir almacenamiento al nodo 1 requiere que también esté disponible un número idéntico de unidades en el par de HA del nodo (nodo 2). Tanto las unidades locales como los discos remotos se usan en una sola operación de añadir almacenamiento en el nodo 1. Es decir, los discos remotos se usan para asegurarse de que el nuevo almacenamiento en el nodo 1 se replica y protege en el nodo 2. Para añadir almacenamiento utilizable localmente en el nodo 2, se necesita una operación de añadir almacenamiento independiente y debe haber disponible un número idéntico de unidades en ambos nodos.
+
+ONTAP Select particiona las nuevas unidades en las mismas particiones raíz, de datos y de datos que las unidades existentes. La operación de particionamiento se realiza durante la creación de un nuevo agregado o durante la expansión de un agregado existente. El tamaño de la franja de partición raíz en cada disco se establece para que coincida con el tamaño de la partición raíz existente en los discos existentes. Por lo tanto, cada uno de los dos tamaños de partición de datos iguales se puede calcular como la capacidad total del disco menos el tamaño de la partición raíz dividido por dos. El tamaño de la franja de partición raíz es variable y se calcula durante la configuración inicial del clúster de la siguiente manera. El espacio raíz total requerido (68GB para un clúster de un solo nodo y 136GB para pares HA) se divide entre el número inicial de discos menos las unidades de repuesto y de paridad. El tamaño de la franja de partición raíz se mantiene constante en todas las unidades que se agregan al sistema.
+
+Si estás creando un nuevo agregado, el número mínimo de unidades necesarias varía en función del tipo de RAID y de si el nodo ONTAP Select forma parte de un par de alta disponibilidad (HA).
+
+Si se añade almacenamiento a un agregado existente, es necesario tener en cuenta algunos aspectos adicionales. Es posible añadir unidades a un grupo RAID existente, siempre que el grupo RAID no haya alcanzado su límite máximo. Las mejores prácticas tradicionales de FAS y AFF para añadir discos a grupos RAID existentes también se aplican aquí, y la creación de un punto caliente en el nuevo disco es una posible preocupación. Además, solo se pueden añadir unidades con tamaños de partición de datos iguales o mayores a un grupo RAID existente. Como se explicó anteriormente, el tamaño de la partición de datos no es lo mismo que el tamaño bruto de la unidad. Si las particiones de datos que se añaden son mayores que las particiones existentes, las nuevas unidades se dimensionan correctamente. En otras palabras, una parte de la capacidad de cada nueva unidad queda sin utilizar.
+
+También es posible usar las nuevas unidades para crear un nuevo grupo RAID como parte de un agregado existente. En este caso, el tamaño del grupo RAID debe coincidir con el tamaño del grupo RAID existente.

@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: task_adm_resize.html 
+keywords: administer, administering, web, resizing nodes, resizing 
+summary: Después de implementar un clúster ONTAP Select, puedes actualizar el tipo de instancia del hipervisor de los nodos usando la utilidad de administración Deploy. 
+---
+= Cambiar el tamaño de los nodos del clúster ONTAP Select
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Después de implementar un clúster ONTAP Select, puedes actualizar el tipo de instancia del hipervisor de los nodos usando la utilidad de administración Deploy.
+
+
+NOTE: Puedes realizar la operación de redimensionamiento de los nodos del clúster cuando usas el modelo de licencia Capacity Tiers y el modelo de licencia Capacity Pools.
+
+
+NOTE: El cambio de tamaño al tipo de instancia grande solo es compatible con ESXi.
+
+.Antes de empezar
+El clúster debe estar en estado en línea.
+
+.Acerca de esta tarea
+Esta tarea describe cómo usar la interfaz web de Deploy. También puedes usar la CLI de Deploy para realizar el cambio de tamaño de la instancia. Independientemente de la interfaz que uses, el tiempo necesario para la operación de cambio de tamaño puede variar significativamente según varios factores y puede tardar bastante en completarse. Solo puedes cambiar el tamaño de un nodo a uno mayor.
+
+.Pasos
+. Inicia sesión en la interfaz web de la utilidad Deploy usando la cuenta de administrador.
+. Haz clic en la pestaña *Cluster* en la parte superior de la página y selecciona el clúster deseado de la lista.
+. En la página de detalles del clúster, haz clic en el icono de engranaje a la derecha de la página y selecciona *Redimensionar instancia*.
+. Selecciona el *Tipo de instancia* y proporciona las credenciales de ONTAP, luego haz clic en *Modificar*.
+
+
+.Después de que termines
+Debes esperar a que finalice la operación de redimensionamiento.

@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: task_lic_acquire_cp.html 
+keywords: license, licensing, acquire, Capacity Pools 
+summary: Debes adquirir un archivo de licencia para cada grupo de capacidad utilizado por los nodos ONTAP Select. El archivo de licencia define la capacidad de almacenamiento y la caducidad del grupo. Está bloqueado en el License Manager mediante una combinación del número de serie de licencia único asignado por NetApp y el License Lock ID asociado con la instancia de Deploy. 
+---
+= Adquirir una licencia de ONTAP Select Capacity Pool
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Debes adquirir un archivo de licencia para cada grupo de capacidad utilizado por los nodos ONTAP Select. El archivo de licencia define la capacidad de almacenamiento y la caducidad del grupo. Está bloqueado en el License Manager mediante una combinación del número de serie de licencia único asignado por NetApp y el License Lock ID asociado con la instancia de Deploy.
+
+.Antes de empezar
+* Debes tener el número de serie de licencia de nueve dígitos asignado al Capacity Pool por NetApp.
+* Deberías esperar al menos 24 horas después de la fecha de envío de tu orden de compra antes de adquirir un archivo de licencia.
+* Has revisado la link:sizing-capacity-pool-license.html["consideraciones para dimensionar una licencia de Capacity Pools"].
+
+
+.Acerca de esta tarea
+Debes realizar esta tarea para cada Capacity Pool utilizado por los nodos de ONTAP Select.
+
+.Pasos
+. Inicia sesión en link:https://mysupport.netapp.com/site/["Sitio de soporte de NetApp"^].
+. Selecciona *Systems* > *Software Licenses*.
+. Escribe el número de serie de la licencia para el Capacity Pool y selecciona *¡Go!*.
+. En la página de detalles de la licencia, ve a la columna *Detalles del producto*.
+. Selecciona *Get NetApp License File* en la fila correspondiente.
+. Escribe el ID de bloqueo de licencia de tu instancia de ONTAP Select Deploy y selecciona *Submit*.
+. Selecciona el método de entrega apropiado y haz clic en *Submit*.
+. Selecciona *OK* en la ventana de confirmación de entrega.
+
+
+.Después de que termines
+Debes cargar el archivo de licencia en la utilidad de administración Deploy antes de que un nodo ONTAP Select pueda usar el Capacity Pool.

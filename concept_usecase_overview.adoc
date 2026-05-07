@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: concept_usecase_overview.html 
+keywords: ontap select, business use case overview, deployment, storage, development and testing 
+summary: ONTAP Select es adecuado para diferentes tipos de aplicaciones gracias a la flexibilidad inherente que proporciona la virtualización del hipervisor. 
+---
+= Necesidades empresariales y escenarios de uso de ONTAP Select
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ONTAP Select es adecuado para diferentes tipos de aplicaciones gracias a la flexibilidad inherente que proporciona la virtualización del hipervisor.
+
+
+
+== Despliegue
+
+A grandes rasgos, puedes desplegar ONTAP Select de dos formas distintas en lo que respecta a la carga de trabajo en los servidores host del hipervisor.
+
+
+
+=== Despliegue dedicado
+
+Con el modelo de despliegue dedicado, una única instancia de ONTAP Select se ejecuta en el servidor host. Ningún otro procesamiento significativo se ejecuta en el mismo host hipervisor.
+
+
+
+=== Despliegue colocalizado
+
+Con el modelo de despliegue coubicado, ONTAP Select comparte el host con otras cargas de trabajo. En concreto, hay máquinas virtuales adicionales, cada una de las cuales suele ejecutar aplicaciones informáticas. Estas cargas de trabajo informáticas son locales al clúster de ONTAP Select. Este modelo admite requisitos de aplicaciones y despliegue especializados. Al igual que con el modelo de despliegue dedicado, cada máquina virtual de ONTAP Select debe ejecutarse en un host de hipervisor independiente y dedicado.
+
+
+
+== Almacenamiento
+
+ONTAP Select puede utilizarse como almacenamiento primario o secundario, en función de las necesidades de tu empresa.
+
+
+
+=== Almacenamiento primario
+
+En determinados casos, puedes optar por implementar ONTAP Select como tu plataforma de almacenamiento principal. Estos tipos de implementaciones varían y dependen de las características de la carga de trabajo de las aplicaciones, así como de tus objetivos de negocio.
+
+
+
+=== Recuperación en caso de catástrofe y almacenamiento secundario
+
+Puedes usar ONTAP Select para implementar almacenamiento adicional que aumente tus capacidades de almacenamiento primario. El almacenamiento adicional se puede usar para respaldar los esfuerzos de recuperación ante desastres y los planes de backup de datos de tu organización.
+
+
+
+== Desarrollo y pruebas
+
+A medida que implantas diversas aplicaciones en tu organización, puedes usar ONTAP Select como parte integral del proceso general de desarrollo y prueba de aplicaciones. Por ejemplo, puedes necesitar almacenamiento temporal para guardar datos de entrada o salida de pruebas. La duración de este tipo de implementaciones puede variar según las características y los requisitos de la aplicación.

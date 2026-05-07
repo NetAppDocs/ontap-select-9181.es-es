@@ -1,0 +1,47 @@
+---
+indexpage:
+  title: Documentación de ONTAP Select
+  lead: NetApp ONTAP Select es un dispositivo de almacenamiento definido por software
+    que puedes implementar en una variedad de servidores de hardware genérico que
+    ejecutan el hipervisor VMware ESXi o Kernel-based Virtual Machine (KVM). Te da
+    la agilidad que necesitas para construir una infraestructura de nube privada flexible
+    y escalable. Este sitio contiene la documentación de ONTAP Select 9.18.1.
+  tiles:
+  - title: Empezar
+    links:
+    - title: Notas de publicación
+      url: https://library.netapp.com/ecm/ecm_download_file/ECMLP3365264
+    - title: Novedades
+      url: "/reference_new_ots.html"
+    - title: Conoce ONTAP Select
+      url: "/concept_ots_overview.html"
+    - title: Licencias
+      url: "/concept_lic_evaluation.html"
+    - title: Prueba ONTAP Select
+      url: "/access-evaluation-software.html"
+    - title: Preguntas frecuentes
+      url: "/reference_faq.html"
+  - title: Instalar y gestionar
+    links:
+    - title: Planifica tu despliegue
+      url: "/concept_workflow_deploy.html"
+    - title: Instalar
+      url: "/task_install_deploy.html"
+    - title: Administra tus clústeres
+      url: "/concept_adm_before.html"
+    - title: Usa la API de REST
+      url: "/concept_api_how_access.html"
+    - title: Despliega una instancia de evaluación de 90 días de un clúster
+      url: "/deploy-evaluation-ontap-select-ovf-template.html"
+  - title: Más recursos
+    links:
+    - title: Biblioteca de productos ONTAP Select
+      url: https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=62293
+    - title: Documentación de ONTAP 9
+      url: https://docs.netapp.com/us-en/ontap/
+    - title: Blogs de ONTAP Select
+      url: https://blog.netapp.com/tag/ontap-select/
+    - title: Comunidad ONTAP Select
+      url: https://community.netapp.com/t5/forums/filteredbylabelpage/board-id/data-ontap-discussions/label-name/ontap%20select
+    - title: Matriz de interoperabilidad
+      url: https://mysupport.netapp.com/matrix/

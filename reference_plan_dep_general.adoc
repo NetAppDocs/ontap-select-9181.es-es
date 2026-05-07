@@ -1,0 +1,133 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_dep_general.html 
+keywords: plan, planning, ontap select deploy, general requirements 
+summary: Existen varios requisitos generales que debes tener en cuenta al planificar la instalación de la utilidad de administración ONTAP Select Deploy. 
+---
+= Requisitos generales y planificación de ONTAP Select Deploy
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Existen varios requisitos generales que debes tener en cuenta al planificar la instalación de la utilidad de administración ONTAP Select Deploy.
+
+
+
+== Emparejamiento de la utilidad Deploy con los clústeres ONTAP Select
+
+Tienes varias opciones al emparejar una instancia de la utilidad Deploy con los clústeres ONTAP Select.
+
+
+NOTE: En todos los escenarios de implementación, un único clúster ONTAP Select y los nodos que lo componen solo pueden ser administrados por una instancia de la utilidad de administración Deploy. Un clúster no puede ser administrado por dos o más instancias diferentes de la utilidad Deploy.
+
+.Una instancia de la utilidad para cada clúster ONTAP Select
+Puedes implementar y administrar cada clúster de ONTAP Select mediante una instancia dedicada de la utilidad Deploy. Con esta configuración uno a uno, hay una clara separación entre cada par de utilidad y clúster. Esta configuración proporciona un alto nivel de aislamiento con dominios de fallo más pequeños.
+
+.Una instancia de la utilidad para varios clústeres ONTAP Select
+Puedes implementar y administrar varios clústeres de ONTAP Select en tu organización utilizando una única instancia de la utilidad Deploy. Con esta configuración de uno a muchos, todos los datos de procesamiento y configuración son administrados por la misma instancia de la utilidad Deploy.
+
+
+NOTE: Una instancia de la utilidad Deploy puede administrar hasta 400 nodos ONTAP Select o 100 clústeres.
+
+
+
+== Requisitos relacionados con el entorno KVM
+
+Antes de instalar la utilidad de administración Deploy en un entorno de hipervisor KVM, debes revisar los requisitos básicos y prepararte para la implementación.
+
+.Requisitos y restricciones para una implementación
+Existen varios requisitos y restricciones que debes tener en cuenta al instalar la utilidad ONTAP Select Deploy en un entorno KVM.
+
+.Requisitos de hardware del servidor host Linux KVM
+Existen varios requisitos mínimos de recursos que debe cumplir tu host hipervisor Linux KVM. Verifica que los hosts donde está implementado ONTAP Select cumplan con los siguientes requisitos básicos:
+
+* Servidor Linux:
++
+** El hardware y el software deben ser de 64 bits
+** El servidor debe cumplir con las mismas versiones compatibles que las definidas para un nodo ONTAP Select
+
+
+* CPU virtuales (2)
+* Memoria virtual (4GB)
+* Almacenamiento (40GB)
+* "El Protocolo de configuración dinámica de host (DHCP) está habilitado (también puedes asignar una dirección IP estática)
+
+
+.Conectividad de red
+Verifica que la interfaz de red de la máquina virtual Deploy esté configurada y pueda conectarse a los hosts ONTAP Select que administra.
+
+.Compatibilidad con la versión 4 de IP
+ONTAP Select Deploy solo admite la versión 4 de IP (IPv4). La versión 6 de IP (IPv6) no es compatible. Esta restricción afecta a ONTAP Select de las siguientes maneras:
+
+* Debes asignar una dirección IPv4 a la LIF de administración de la máquina virtual de Deploy.
+* Deploy no puede crear nodos ONTAP Select configurados para usar IPv6 en las LIF de ONTAP.
+
+
+
+
+== Información de configuración necesaria
+
+Como parte de la planificación del despliegue, debes determinar la información de configuración necesaria antes de instalar la utilidad de administración ONTAP Select Deploy.
+
+.Nombre de la máquina virtual de despliegue
+El nombre que se utilizará para la máquina virtual.
+
+.Nombre del host KVM de Linux
+El host Linux KVM donde está instalada la utilidad Deploy.
+
+.Nombre del grupo de almacenamiento
+El pool de almacenamiento que contiene los archivos de la máquina virtual (se requieren aproximadamente 40 GB).
+
+.Red para la máquina virtual
+La red a la que está conectada la máquina virtual de despliegue.
+
+
+
+== Información opcional sobre la configuración de red
+
+La máquina virtual Deploy se configura mediante DHCP de forma predeterminada. Sin embargo, si es necesario, puedes configurar manualmente la interfaz de red para la máquina virtual.
+
+.Host name
+El nombre del host.
+
+.Dirección IP del host
+La dirección IPv4 estática.
+
+.Máscara de subred
+La máscara de subred, que se basa en la red a la que pertenece la VM.
+
+.Pasarela
+La puerta de enlace o enrutador predeterminado.
+
+.Servidor DNS primario
+El servidor de nombres de dominio principal.
+
+.Servidor DNS secundario
+El servidor de nombres de dominio secundario.
+
+.Buscar dominios
+Los dominios de búsqueda a utilizar.
+
+
+
+== Autenticación mediante el almacén de credenciales
+
+El almacén de credenciales de ONTAP Select Deploy es una base de datos que contiene información de cuentas. Deploy utiliza las credenciales de cuenta para realizar la autenticación de hosts como parte de la creación y administración del clúster. Debes conocer cómo se utiliza el almacén de credenciales como parte de la planificación de una implementación de ONTAP Select.
+
+
+NOTE: La información de la cuenta se almacena de forma segura en la base de datos mediante el algoritmo de cifrado AES y el algoritmo de hash SHA-256.
+
+.Tipos de credenciales
+Se admiten los siguientes tipos de credenciales:
+
+* Host Se utiliza para autenticar un host de hipervisor como parte del despliegue de un nodo ONTAP Select directamente en VMware ESXi
+* vCenter Se utiliza para autenticar un servidor vCenter como parte del despliegue de un nodo ONTAP Select en ESXi cuando el host es administrado por VMware vCenter
+
+
+.Acceso
+El almacén de credenciales se accede internamente al realizar tareas administrativas habituales con Deploy, como agregar un host de hipervisor. También puedes administrar el almacén de credenciales directamente a través de la interfaz web de usuario y la CLI de Deploy.

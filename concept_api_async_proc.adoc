@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: concept_api_async_proc.html 
+keywords: rest api, deploy rest api, rest, asynchronous processing, job object 
+summary: Algunas de las llamadas a la API de Deploy, especialmente las que crean o modifican un recurso, pueden tardar más en completarse que otras llamadas. ONTAP Select Deploy procesa estas solicitudes de larga duración de forma asíncrona. 
+---
+= Procesamiento asíncrono mediante el objeto Job para ONTAP Select
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Algunas de las llamadas a la API de Deploy, especialmente las que crean o modifican un recurso, pueden tardar más en completarse que otras llamadas. ONTAP Select Deploy procesa estas solicitudes de larga duración de forma asíncrona.
+
+
+
+== Solicitudes asíncronas descritas mediante el objeto Job
+
+Tras realizar una llamada a la API que se ejecuta de forma asíncrona, el código de respuesta HTTP 202 indica que la solicitud se ha validado y aceptado correctamente, pero aún no se ha completado. La solicitud se procesa como una tarea en segundo plano que continúa ejecutándose tras la respuesta HTTP inicial al cliente. La respuesta incluye el objeto Job que ancla la solicitud, incluido su identificador único.
+
+
+NOTE: Deberías consultar la página de documentación online de ONTAP Select Deploy para determinar qué llamadas a la API de REST funcionan de forma asíncrona.
+
+
+
+== Consultar el objeto Job asociado a una solicitud de API
+
+El objeto Job devuelto en la respuesta HTTP contiene varias propiedades. Puedes consultar la propiedad state para determinar si la solicitud se ha completado correctamente. Un objeto Job puede encontrarse en uno de los siguientes estados:
+
+* En cola
+* En ejecución
+* Éxito
+* Fallo
+
+
+Hay dos técnicas que puedes usar cuando sondeas un objeto Job para detectar un estado terminal de la tarea, ya sea éxito o fracaso:
+
+* Solicitud de sondeo estándar, el estado actual del trabajo se devuelve inmediatamente
+* Solicitud de sondeo larga: el estado del trabajo solo se devuelve cuando ocurre una de las siguientes situaciones:
++
+** El estado ha cambiado más recientemente que el valor de fecha-hora proporcionado en la solicitud de sondeo
+** El tiempo de espera ha expirado (1 a 120 segundos)
+
+
+
+
+El sondeo estándar y el sondeo largo utilizan la misma llamada a la API para consultar un objeto Job. Sin embargo, una solicitud de sondeo largo incluye dos parámetros de consulta: `poll_timeout` y `last_modified`.
+
+
+TIP: Siempre debes usar el sondeo prolongado para reducir la carga de trabajo en la máquina virtual Deploy.
+
+
+
+== Procedimiento general para emitir una solicitud asíncrona
+
+Puedes usar el siguiente procedimiento a grandes rasgos para completar una llamada asíncrona a la API:
+
+. Emite la llamada asíncrona a la API.
+. Recibe una respuesta HTTP 202 indicando la aceptación satisfactoria de la solicitud.
+. Extrae el identificador del objeto Job del cuerpo de la respuesta.
+. Dentro de un bucle, realiza lo siguiente en cada ciclo:
++
+.. Obtén el estado actual del Job con una petición long-poll
+.. Si el trabajo se encuentra en un estado no terminal (en cola, en ejecución), realiza el bucle de nuevo.
+
+
+. Detén cuando el Job alcanza un estado terminal (éxito, fracaso).
+

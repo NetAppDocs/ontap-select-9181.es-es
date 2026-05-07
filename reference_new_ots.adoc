@@ -1,0 +1,308 @@
+---
+sidebar: sidebar 
+permalink: reference_new_ots.html 
+keywords: new features 
+// summary: The current release includes several new features and improvements specific to ONTAP Select. 
+summary: La versión actual incluye varias funciones nuevas o mejoras específicas de ONTAP Select. 
+---
+= Novedades de ONTAP Select
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Conoce las nuevas funciones y mejoras en las versiones compatibles de ONTAP Select.
+
+
+
+== ONTAP Select 9.18.1
+
+Actualizaciones de las opciones de descarga del producto ONTAP Select:: Las opciones de descarga de productos ONTAP Select en el NetApp Support Site están cambiando con la versión ONTAP Select 9.18.1 a *ONTAP Select Deploy* y *ONTAP Select Image*. Estas dos nuevas opciones de descarga de productos reemplazan las cuatro opciones anteriores, como se muestra en la siguiente tabla:
++
+--
+[cols="30,30,40"]
+|===
+| Opción de descarga de producto anterior | Nueva opción de descarga de producto | Para más información, ve a.... 
+
+
+| ONTAP Select | ONTAP Select Deploy | link:task_install_deploy.html["Instala ONTAP Select Deploy"] 
+
+
+| Instalación de imagen ONTAP Select | Imagen de ONTAP Select | link:task_cli_deploy_image_add.html["Añade una imagen de ONTAP Select a Deploy"] 
+
+
+| Actualización de ONTAP Select Deploy | ONTAP Select Deploy | link:task_cli_upgrade_deploy.html["Actualiza una instancia de ONTAP Select Deploy"] 
+
+
+| Actualización de ONTAP Select Node | Imagen de ONTAP Select | link:concept_adm_upgrading_nodes.html["Actualiza los nodos de ONTAP Select"] 
+|===
+--
+Compatibilidad mejorada con la expansión y contracción de clústeres:: A partir de ONTAP Select 9.18.1, la expansión y contracción de clústeres es compatible entre clústeres ONTAP Select de cuatro y doce nodos en hosts con hipervisor ESXi y KVM.
++
+--
+--
+Puedes aumentar el tamaño del clúster para un clúster existente en un host ESXi o KVM en los siguientes incrementos:
+
+* De cuatro nodos a seis, ocho, diez o doce nodos
+* De seis a ocho, diez o doce nodos
+* De ocho a diez o doce nodos
+* De diez a doce nodos
+
+
+Puedes reducir el tamaño del clúster para un clúster existente en un host ESXi o KVM en los siguientes incrementos:
+
+* De doce nodos a diez, ocho, seis o cuatro nodos
+* De diez nodos a ocho, seis o cuatro nodos
+* De ocho a seis o cuatro nodos
+* De seis a cuatro nodos
+
+
+--
+link:task_cluster_expansion_contraction.html["Conoce la ampliación y reducción de clústeres y las versiones de hipervisor KVM y ESXi compatibles"].
+
+--
+Compatibilidad actualizada con el hipervisor KVM:: A partir de ONTAP Select 9.18.1, el hipervisor KVM es compatible con Rocky Linux 10.1.
+
+
+
+
+== ONTAP Select 9.17.1
+
+Compatibilidad con RAID por software para discos NVMe conectados localmente en hosts KVM:: ONTAP Select 9.17.1 introduce compatibilidad con RAID por software para discos NVMe conectados localmente a ONTAP Select en un host hipervisor de máquina virtual basada en kernel (KVM).
++
+--
+Para utilizar RAID por software para discos NVMe conectados localmente, necesitas link:kvm-host-configuration-and-preparation-checklist.html["configura el PCI passthrough (DirectPath IO)"] cuando estés preparando el host KVM. Esto proporciona acceso directo del host KVM a los discos NVMe conectados localmente, lo que se requiere para las siguientes tareas:
+
+* Configuración del host KVM para usar unidades NVMe
+* Uso de RAID por software después de desplegar el clúster
+
+
+link:concept_stor_swraid_local.html["Conoce los servicios de configuración de software RAID para el almacenamiento local conectado"].
+
+--
+Soporte para la expansión y contracción de clústeres en hosts KVM:: A partir de ONTAP Select 9.17.1, la función de expansión y contracción de clúster es compatible tanto con hosts de Kernel-Based Virtual Machine (KVM) como con hosts de hipervisor ESXi. En ONTAP Select 9.16.1 y 9.15.1, la expansión y contracción de clúster solo es compatible con hosts de hipervisor ESXi.
++
+--
+Puedes usar la función de expansión y contracción del clúster en un clúster ONTAP Select existente para aumentar el tamaño de un clúster de seis nodos a uno de ocho nodos o reducir el tamaño de un clúster de ocho nodos a uno de seis nodos.
+
+link:task_cluster_expansion_contraction.html["Conoce la ampliación y reducción de clústeres y las versiones de hipervisor KVM y ESXi compatibles"].
+
+--
+Soporte mejorado para la expansión y contracción de clústeres en hosts ESXi:: A partir de ONTAP Select 9.17.1, se admite la expansión y contracción de clústeres entre clústeres de seis y doce nodos en hosts ESXi:
++
+--
+--
+Puedes aumentar el tamaño del clúster para un clúster ESXi existente en los siguientes incrementos:
+
+* De seis a ocho, diez o doce nodos
+* De ocho a diez o doce nodos
+* De diez a doce nodos
+
+
+Puedes disminuir el tamaño del clúster para un clúster ESXi existente en los siguientes incrementos:
+
+* De doce nodos a diez, ocho o seis nodos
+* De diez nodos a ocho o seis nodos
+* De ocho a seis nodos
+
+
+--
+link:task_cluster_expansion_contraction.html["Conoce la ampliación y reducción de clústeres y las versiones de hipervisor KVM y ESXi compatibles"].
+
+--
+Soporte para SnapMirror cloud:: A partir de ONTAP Select 9.17.1, SnapMirror cloud es compatible con ONTAP Select. SnapMirror cloud es una función de ONTAP con licencia que se activa por defecto cuando implementas un clúster de ONTAP Select 9.17.1 o actualizas un clúster de ONTAP Select existente a la versión 9.17.1.
++
+--
+https://docs.netapp.com/us-en/ontap/concepts/snapmirror-cloud-backups-object-store-concept.html["Conoce las copias de seguridad en la nube de SnapMirror a almacenamiento de objetos"^].
+
+--
+Compatibilidad con SnapLock Select:: A partir de ONTAP Select 9.17.1, las nuevas implementaciones tienen SnapLock Select (incluido el bloqueo de snapshots a prueba de manipulaciones) licenciado automáticamente. Para actualizaciones desde ONTAP Select 9.16.1 y anteriores, puedes descargar la licencia SnapLock Select gratis desde link:https://mysupport.netapp.com/site/["Sitio de soporte de NetApp"^] y aplicarla manualmente. Para más información, consulta link:reference_lic_ontap_features.html#enabled-ontap-features["Funciones de ONTAP activadas automáticamente por defecto"].
+Compatibilidad con vSAN ESA en clústeres multinodo:: A partir de ONTAP Select 9.17.1, la compatibilidad con vSAN Express Storage Architecture (ESA) se amplía para permitir la implementación de clústeres multinodo. Esta mejora te permite implementar configuraciones de vSAN ESA.
++
+--
+vSAN ESA es una configuración específica de ESXi y es una nueva arquitectura para VMware vSAN introducida en vSphere 8. vSAN ESA está diseñada para ofrecer mayor eficiencia, escalabilidad y rendimiento, especialmente cuando se usan dispositivos flash TLC basados en NVMe.
+
+ONTAP Select Deploy y ONTAP Select para ESXi admiten la configuración de un clúster de un solo nodo y de varios nodos de ONTAP Select, usando un datastore de tipo vSAN o un array externo para su pool de almacenamiento.
+
+[NOTE]
+====
+Para realizar operaciones en la biblioteca de contenidos, necesitarás acceso a niveles de permisos adicionales. Esto es necesario para las implementaciones de vSAN ESA si estás trabajando con roles restringidos.
+
+link:https://docs.netapp.com/us-en/ontap-select/reference_plan_dep_vmware.html["Conoce cómo acceder a los niveles de permisos para las operaciones de la biblioteca de contenidos"^].
+
+====
+--
+Soporte actualizado para controladores NDA:: A partir de ONTAP Select 9.17.1, el controlador de dispositivo FreeBSD NDA (NVMe Direct Access) reemplaza al NVD (NVMe express disk driver). El controlador FreeBSD ofrece compatibilidad con dispositivos de acceso directo mediante la implementación del protocolo de comandos NVMe. Cuando implementas un clúster ONTAP Select 9.17.1 o actualizas un clúster ONTAP Select existente a la versión 9.17.1, el controlador FreeBSD se inicia de forma predeterminada cuando configuras los dispositivos NVMe.
++
+--
+Para ONTAP Select 9.16.1 y versiones anteriores, el NVD continúa brindando soporte para dispositivos NVMe en tu implementación de ONTAP Select.
+
+--
+Compatibilidad actualizada con el hipervisor KVM:: A partir de ONTAP Select 9.17.1, el hipervisor KVM es compatible con Red Hat Enterprise Linux (RHEL) 10.1, 10.0, 9.7 y 9.6 y Rocky Linux 10.0, 9.7 y 9.6.
++
+--
+[NOTE]
+====
+Existen limitaciones de flujo de trabajo RAID por software para hipervisores KVM en hosts RHEL 10.1 y 10.0 y Rocky Linux 10.0. Para más información, consulta los siguientes artículos de la base de conocimientos:
+
+* link:https://kb.netapp.com/on-prem/ontap/ontap-select/Select-Issues/CDEPLOY-4020["CDEPLOY-4020: ONTAP Select Deploy: Mensaje de advertencia al crear el clúster HWR usando RHEL 10 y ROCKY 10"^]
+* link:https://kb.netapp.com/on-prem/ontap/ontap-select/Select-Issues/CDEPLOY-4025["CDEPLOY-4025: ONTAP Select DeployGUI: Los grupos de almacenamiento y los discos de almacenamiento no son visibles para SWR en la página de creación de clúster en hosts con RHEL10/Rocky 10"^]
+
+
+====
+--
+Compatibilidad mejorada con VMware ESXi:: ONTAP Select 9.17.1 incluye compatibilidad con VMware ESXi 9.0.
+
+
+
+
+== ONTAP Select 9.16.1
+
+Compatibilidad actualizada con archivos de licencia de NetApp:: A partir de ONTAP Select 9.16.1, la compatibilidad con NetApp License File (NLF) se actualiza. El nuevo formato NLF incluye licencias para las funciones ARP, ONTAP S3 y S3 SnapMirror. link:reference_lic_ontap_features.html#enabled-ontap-features["Más información"].
++
+--
+Para una nueva implementación de ONTAP Select 9.16.1, el nuevo formato NLF se aplica automáticamente. Cuando actualizas una implementación existente de ONTAP Select Deploy a 9.16.1, el nuevo formato NLF no se aplica. Para obtener las licencias de funciones ARP, ONTAP S3 y S3 SnapMirror, debes descargar el NLF actualizado después de la actualización. Si vuelves a ONTAP Select 9.15.1 o anterior, debes reinstalar las licencias de funciones que tenías antes de la actualización.
+
+--
+Compatibilidad con la protección autónoma contra el ransomware:: ONTAP Select 9.16.1 introduce soporte para Autonomous Ransomware Protection (ARP). ONTAP Select 9.16.1 solo admite actualizaciones manuales para ARP, las actualizaciones automáticas no están soportadas. La licencia de la función ARP está incluida en el NLF para ONTAP Select 9.16.1. link:reference_lic_ontap_features.html#enabled-ontap-features["Más información"].
+Compatibilidad mejorada con VMware ESXi:: ONTAP Select 9.16.1 incluye compatibilidad con VMware ESXi 8.0 U3.
+Compatibilidad actualizada con el hipervisor KVM:: A partir de ONTAP Select 9.16.1, el hipervisor KVM es compatible con RHEL 9.5 y Rocky Linux 9.5.
+
+
+
+
+== ONTAP Select 9.15.1
+
+Compatibilidad actualizada con el hipervisor KVM:: A partir de ONTAP Select 9.15.1, el hipervisor Kernel-Based Virtual Machine (KVM) es compatible con RHEL 9.4 y Rocky Linux 9.4.
+Soporte para la expansión y contracción de clústeres:: A partir de ONTAP Select 9.15.1, se admite la expansión y contracción de clústeres.
++
+--
+* Expansión del clúster de seis nodos a clústeres de ocho nodos
++
+Puedes aumentar el tamaño del clúster de seis nodos a ocho nodos con la función de expansión de clúster. Actualmente no se admiten expansiones de clústeres de uno, dos o cuatro nodos a clústeres de seis u ocho nodos. link:task_cluster_expansion_contraction.html#expand-the-cluster["Más información"].
+
+* Reducción de clústeres de ocho nodos a clústeres de seis nodos
++
+Puedes reducir el tamaño del clúster de ocho nodos a seis nodos con la función de contracción de clúster. Actualmente no se admiten las contracciones de clústeres de seis u ocho nodos a clústeres de uno, dos o cuatro nodos. link:task_cluster_expansion_contraction.html#contract-the-cluster["Más información"].
+
+
+
+--
+
+
+
+NOTE: El soporte para la expansión y contracción de clústeres está limitado solo a los clústeres ESXi.
+
+
+
+== ONTAP Select 9.14.1
+
+Compatibilidad con el hipervisor KVM:: A partir de ONTAP Select 9.14.1, se ha restablecido la compatibilidad con el hipervisor KVM. Anteriormente, en ONTAP Select 9.10.1 se eliminó la compatibilidad para implementar un nuevo clúster en un hipervisor KVM y en ONTAP Select 9.11.1 se eliminó la compatibilidad para administrar clústeres y hosts KVM existentes, excepto para desconectarlos o eliminarlos.
+Implementar el complemento de VMware vCenter ya no es compatible:: A partir de ONTAP Select 9.14.1, el complemento Deploy VMware vCenter ya no es compatible.
+Soporte actualizado para ONTAP Select Deploy:: Si estás ejecutando una versión de ONTAP Select Deploy 9.14.1 inferior a la 9.14.1P2, deberías actualizar a ONTAP Select Deploy 9.14.1P2 lo antes posible. Para más información, consulta link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2886733["Notas de la versión de ONTAP Select 9.14.1"^].
+Compatibilidad mejorada con VMware ESXi:: ONTAP Select 9.14.1 incluye compatibilidad con VMware ESXi 8.0 U2.
+
+
+
+
+== ONTAP Select 9.13.1
+
+Compatibilidad con NVMe sobre TCP:: Cuando actualizas a ONTAP Select 9.13.1, debes tener la nueva licencia para admitir NVMe sobre TCP. Esta licencia se incluye automáticamente cuando implementas ONTAP Select por primera vez desde la versión 9.13.1.
+Compatibilidad actualizada con VMware ESXi:: A partir de ONTAP 9.13.1, VMware ESXi 8.0.1 GA (build 20513097) es compatible con la versión de hardware 4 y posteriores.
+Soporte actualizado para ONTAP Select Deploy:: A partir de abril de 2024, ONTAP Select Deploy 9.13.1 ya no está disponible en el NetApp Support Site. Si estás ejecutando ONTAP Select Deploy 9.13.1, deberías actualizar a ONTAP Select Deploy 9.14.1P2 lo antes posible. Para más información, consulta link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2886733["Notas de la versión de ONTAP Select 9.14.1"^].
+
+
+
+
+== ONTAP Select 9.12.1
+
+ONTAP Select 9.12.1 incorpora la mayoría de las novedades de la versión actual del producto principal de ONTAP. No incluye ninguna función ni mejora nueva específica de ONTAP Select.
+
+A partir de abril de 2024, ONTAP Select Deploy 9.12.1 ya no está disponible en el NetApp Support Site. Si estás ejecutando ONTAP Select Deploy 9.12.1, deberías actualizar a ONTAP Select Deploy 9.14.1P2 lo antes posible. Para más información, consulta link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2886733["Notas de la versión de ONTAP Select 9.14.1"^].
+
+
+
+== ONTAP Select 9.11.1
+
+Compatibilidad mejorada con VMware ESXi:: ONTAP Select 9.11.1 incluye compatibilidad con VMware ESXi 7.0 U3C.
+Compatibilidad con VMware NSX-T:: ONTAP Select 9.10.1 y versiones posteriores han sido certificadas para VMware NSX-T versión 3.1.2. No existen problemas ni deficiencias funcionales al usar NSX-T con un clúster de un solo nodo de ONTAP Select implementado con un archivo OVA y la utilidad de administración ONTAP Select Deploy. Sin embargo, al usar NSX-T con un clúster de varios nodos de ONTAP Select, debes tener en cuenta la siguiente limitación para ONTAP Select 9.11.1:
++
+--
+* Comprobador de conectividad de red
++
+El comprobador de conectividad de red disponible a través de la CLI de Deploy falla cuando se ejecuta en una red basada en NSX-T.
+
+
+
+--
+El hipervisor KVM ya no es compatible::
++
+--
+* A partir de ONTAP Select 9.10.1, ya no puedes implementar un nuevo clúster en el hipervisor KVM.
+* A partir de ONTAP Select 9.11.1, todas las funciones de administración ya no están disponibles para los clústeres y hosts KVM existentes, excepto las funciones de desconexión y eliminación.
++
+NetApp recomienda encarecidamente que los clientes planifiquen y realicen una migración completa de datos desde ONTAP Select para KVM a cualquier otra plataforma ONTAP, incluida ONTAP Select para ESXi. Para más información, consulta el  https://mysupport.netapp.com/info/communications/ECMLP2877451.html["Aviso de EOA"^]
+
+
+
+--
+
+
+
+
+== ONTAP Select 9.10.1
+
+Compatibilidad con VMware NSX-T:: ONTAP Select 9.10.1 ha sido certificado para VMware NSX-T versión 3.1.2. No existen problemas ni deficiencias funcionales al usar NSX-T con un clúster de un solo nodo ONTAP Select implementado con un archivo OVA y la utilidad de administración ONTAP Select Deploy. Sin embargo, al usar NSX-T con un clúster de varios nodos ONTAP Select, debes tener en cuenta los siguientes requisitos y limitaciones:
++
+--
+* MTU de clúster
++
+Debes ajustar manualmente el tamaño de la MTU del clúster a 8800 antes de implementarlo para tener en cuenta la sobrecarga adicional. La recomendación de VMware es dejar un búfer de 200 bytes al usar NSX-T.
+
+* Configuración de red 4x10Gb
++
+Para implementaciones de ONTAP Select en un host VMware ESXi configurado con cuatro NIC, la utilidad Deploy te pedirá que sigas la mejor práctica de dividir el tráfico interno en dos grupos de puertos diferentes y el tráfico externo en otros dos grupos de puertos diferentes. Sin embargo, cuando usas una red superpuesta, esta configuración no funciona y deberías ignorar la recomendación. En este caso, deberías usar solo un grupo de puertos internos y un grupo de puertos externos.
+
+* Comprobador de conectividad de red
++
+El comprobador de conectividad de red disponible a través de la CLI de Deploy falla cuando se ejecuta en una red basada en NSX-T.
+
+
+
+--
+El hipervisor KVM ya no es compatible:: A partir de ONTAP Select 9.10.1, ya no puedes implementar un nuevo clúster en el hipervisor KVM. Sin embargo, si actualizas un clúster de una versión anterior a la 9.10.1, todavía puedes usar la utilidad Deploy para administrar el clúster.
+
+
+
+
+== ONTAP Select 9.9.1
+
+Soporte para la familia de procesadores:: A partir de ONTAP Select 9.9.1, solo se admiten modelos de CPU Intel Xeon Sandy Bridge o posteriores para ONTAP Select.
+Compatibilidad actualizada con VMware ESXi:: La compatibilidad con VMware ESXi se ha mejorado con ONTAP Select 9.9.1. Ahora se admiten las siguientes versiones:
++
+--
+* ESXi 7.0 U2
+* ESXi 7.0 U1
+
+
+--
+
+
+
+
+== ONTAP Select 9.8
+
+Interfaz de alta velocidad:: La función de interfaz de alta velocidad mejora la conectividad de red al ofrecer una opción tanto para 25G (25GbE) como para 40G (40GbE). Para lograr el mejor rendimiento al usar estas velocidades más altas, debes seguir las mejores prácticas sobre configuraciones de asignación de puertos, como se describe en la documentación de ONTAP Select.
+Compatibilidad actualizada con VMware ESXi:: Hay dos cambios para ONTAP Select 9.8 respecto al soporte para VMware ESXi.
++
+--
+* ESXi 7.0 es compatible (compilación GA 15843807 y posteriores)
+* ESXi 6.0 ya no es compatible
+
+
+--
+

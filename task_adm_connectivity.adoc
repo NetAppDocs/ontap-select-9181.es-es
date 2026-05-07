@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: task_adm_connectivity.html 
+keywords: administer, administering, web, connectivity, network connectivity, network checker 
+summary: Puedes probar la conectividad de red entre dos o más nodos ONTAP Select en la red interna del clúster. Normalmente, ejecutas esta prueba antes de implementar un clúster de varios nodos para detectar problemas que podrían hacer que la operación falle. 
+---
+= Confirma la conectividad entre los nodos ONTAP Select
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Puedes probar la conectividad de red entre dos o más nodos ONTAP Select en la red interna del clúster. Normalmente, ejecutas esta prueba antes de implementar un clúster de varios nodos para detectar problemas que podrían hacer que la operación falle.
+
+.Antes de empezar
+Todos los nodos ONTAP Select incluidos en la prueba deben estar configurados y encendidos.
+
+.Acerca de esta tarea
+Cada vez que inicias una prueba, se crea una nueva ejecución de proceso en segundo plano y se le asigna un identificador de ejecución único. Solo puede haber una ejecución activa a la vez.
+
+La prueba tiene dos modos que controlan su funcionamiento:
+
+* Rápido Este modo realiza una prueba básica no disruptiva. Se realiza una prueba PING, junto con una prueba del tamaño de la MTU de la red y el vSwitch.
+* Extendido Este modo realiza una prueba más exhaustiva de todas las rutas de red redundantes. Si ejecutas esto en un clúster ONTAP Select activo, el rendimiento del clúster puede verse afectado.
+
+
+
+NOTE: Se recomienda que siempre realices una prueba rápida antes de crear un clúster de varios nodos. Después de que la prueba rápida se complete correctamente, puedes realizar opcionalmente una prueba más exhaustiva según tus requisitos de producción.
+
+.Pasos
+. Inicia sesión en la interfaz web de la utilidad Deploy usando la cuenta de administrador.
+. Haz clic en la pestaña *Administración* en la parte superior de la página y haz clic en *Comprobador de red*.
+. Haz clic en *Iniciar nueva ejecución* y selecciona los hosts y las redes para el par HA
++
+Puedes agregar y configurar pares HA adicionales según sea necesario.
+
+. Haz clic en *Iniciar* para comenzar la prueba de conectividad de red.
+

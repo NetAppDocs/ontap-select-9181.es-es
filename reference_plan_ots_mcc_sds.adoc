@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_ots_mcc_sds.html 
+keywords: plan, planning, metrocluster, metrocluster sds 
+summary: Existen varios requisitos para MetroCluster SDS que debes tener en cuenta al planificar una implementación de ONTAP Select. 
+---
+= Prepárate para una implementación de ONTAP Select MetroCluster SDS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+MetroCluster SDS es una opción de configuración cuando creas un clúster de dos nodos de ONTAP Select. Es similar a un despliegue de Remote Office/Branch Office (ROBO). Este despliegue mejorado de dos nodos ofrece escenarios de casos de uso adicionales. Debes conocer los requisitos y restricciones como parte de la preparación para desplegar MetroCluster SDS.
+
+Antes de desplegar MetroCluster SDS, verifica que se cumplan los siguientes requisitos.
+
+.Licencias
+Cada nodo debe tener una licencia ONTAP Select premium o superior.
+
+.Plataformas de hipervisor
+MetroCluster SDS se puede implementar en los mismos hipervisores VMware ESXi y KVM que se admiten para un clúster de dos nodos en un entorno ROBO.
+
+[NOTE]
+====
+A partir de ONTAP Select 9.14.1, se ha restablecido la compatibilidad con el hipervisor KVM. Anteriormente, en ONTAP Select 9.10.1 se eliminó la compatibilidad para implementar un nuevo clúster en un hipervisor KVM y en ONTAP Select 9.11.1 se eliminó la compatibilidad para administrar clústeres y hosts KVM existentes, excepto para desconectarlos o eliminarlos.
+
+====
+.Configuración de red
+Se requiere conectividad de capa 2 entre los sitios participantes. Se admiten tanto 10GbE como 1GbE, incluidas las siguientes configuraciones:
+
+* 1 x 10GbE
+* 4 x 1GbE
+
+
+
+NOTE: Los puertos de servicio de datos y los puertos de interconexión deben estar conectados al mismo primer switch.
+
+.Latencia entre los nodos
+La red entre los dos nodos debe soportar una latencia media de 5 ms con un jitter periódico adicional de 5 ms. Antes de desplegar el clúster, debes probar la red usando el procedimiento descrito en la sección link:concept_nw_concepts_chars.html["Análisis profundo de redes"].
+
+.Servicio de mediación
+Como en todos los clústeres ONTAP Select de dos nodos, existe un servicio mediador independiente incluido en la máquina virtual Deploy que supervisa los nodos y ayuda a gestionar los fallos. Con la distancia mejorada disponible con MetroCluster SDS, esto crea tres sitios distintos en la topología de red. La latencia en el enlace entre el mediador y un nodo debe ser de 125 ms ida y vuelta o menos.
+
+.Almacenamiento
+Se admite el almacenamiento de conexión directa (DAS) mediante discos HDD y SSD. También se admite vNAS, incluidas las matrices de almacenamiento externo y vSAN en un entorno VMware.
+
+
+NOTE: Al desplegar MetroCluster SDS, no puedes usar vSAN en una topología distribuida o "stretched".
+
+.Dirección IP estática asignada a Deploy
+Debes asignar una dirección IP estática a la utilidad de administración de Deploy. Este requisito se aplica a todas las instancias de Deploy que gestionan uno o más clústeres de dos nodos de ONTAP Select.

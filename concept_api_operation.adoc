@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: concept_api_operation.html 
+keywords: rest api, deploy rest api, rest, operation, basic operation 
+summary: Si bien REST establece un conjunto común de tecnologías y mejores prácticas, los detalles de cada API pueden variar según las decisiones de diseño. Debes familiarizarte con los detalles y las características operativas de la API de ONTAP Select Deploy antes de usar la API. 
+---
+= Características operativas básicas de la API de ONTAP Select Deploy
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Si bien REST establece un conjunto común de tecnologías y mejores prácticas, los detalles de cada API pueden variar según las decisiones de diseño. Debes familiarizarte con los detalles y las características operativas de la API de ONTAP Select Deploy antes de usar la API.
+
+
+
+== Host del hipervisor frente a nodo ONTAP Select
+
+Un host hipervisor es la plataforma de hardware principal que aloja una máquina virtual ONTAP Select. Cuando una máquina virtual ONTAP Select se implementa y está activa en un host hipervisor, la máquina virtual se considera un nodo ONTAP Select. Con la versión 3 de la API de REST Deploy, los objetos host y nodo son independientes y distintos. Esto permite una relación de uno a muchos, donde uno o más nodos ONTAP Select pueden ejecutarse en el mismo host hipervisor.
+
+
+
+== Identificadores de objetos
+
+Cada instancia u objeto de recurso recibe un identificador único al crearse. Estos identificadores son únicos a nivel global dentro de una instancia específica de ONTAP Select Deploy. Tras realizar una llamada a la API que crea una nueva instancia de objeto, el valor del identificador asociado se devuelve al emisor en el  `location` encabezado de la respuesta HTTP. Puedes extraer el identificador y usarlo en llamadas posteriores cuando te refieras a la instancia del recurso.
+
+
+NOTE: El contenido y la estructura interna de los identificadores de objeto pueden cambiar en cualquier momento. Debes utilizar los identificadores únicamente en las llamadas a la API de REST correspondientes, cuando sea necesario para referirte a los objetos asociados.
+
+
+
+== Identificadores de solicitud
+
+Cada solicitud API exitosa recibe un identificador único. El identificador se devuelve en el  `request-id` header de la respuesta HTTP asociada. Puedes usar un identificador de solicitud para referirte colectivamente a las actividades de una transacción API de solicitud-respuesta específica. Por ejemplo, puedes recuperar todos los mensajes de evento de una transacción basándote en el request id.
+
+
+
+== Llamadas síncronas y asíncronas
+
+Existen dos formas principales en que un servidor procesa una solicitud HTTP recibida de un cliente:
+
+* Síncrono El servidor realiza la solicitud inmediatamente y responde con un código de estado 200, 201 o 204.
+* Asíncrono. El servidor acepta la solicitud y responde con un código de estado 202. Esto indica que el servidor ha aceptado la solicitud del cliente y ha iniciado una tarea en segundo plano para completarla. El resultado final (éxito o fracaso) no está disponible de inmediato y debe determinarse mediante llamadas adicionales a la API de REST.
+
+
+
+
+== Confirma la finalización de un trabajo de larga duración
+
+Por lo general, cualquier operación que pueda tardar mucho tiempo en completarse se procesa de forma asíncrona mediante una tarea en segundo plano en el servidor. Con la API de REST de Deploy, cada tarea en segundo plano está vinculada a un objeto Job que realiza un seguimiento de la tarea y proporciona información, como el estado actual. Un objeto Job, incluido su identificador único, se devuelve en la respuesta HTTP después de que se crea una tarea en segundo plano.
+
+Puedes consultar directamente el objeto Job para determinar el éxito o el fallo de la llamada a la API asociada. Consulta _procesamiento asíncrono mediante el objeto Job_ para obtener más información.
+
+Además de utilizar el objeto Job, existen otras formas de determinar el éxito o el fracaso de una solicitud, entre ellas:
+
+* Mensajes de evento Puedes recuperar todos los mensajes de evento asociados a una llamada específica a la API utilizando el id de solicitud que se devuelve con la respuesta original. Los mensajes de evento suelen contener una indicación de éxito o fallo, y también pueden ser útiles al depurar una condición de error.
+* Estado o condición del recurso Varios de los recursos mantienen un valor de estado o condición que puedes consultar para determinar indirectamente el éxito o el fracaso de una solicitud.
+
+
+
+
+== Seguridad
+
+La API de Deploy utiliza las siguientes tecnologías de seguridad:
+
+* Seguridad de la capa de transporte Todo el tráfico enviado a través de la red entre el servidor de Deploy y el cliente está cifrado mediante TLS. No se admite el uso del protocolo HTTP a través de un canal no cifrado. Se admite la versión 1.2 de TLS.
+* La autenticación HTTP básica se utiliza para cada transacción de API. A cada solicitud se le agrega un encabezado HTTP que incluye el nombre de usuario y la contraseña en una cadena base64.
+

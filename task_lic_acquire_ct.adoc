@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: task_lic_acquire_ct.html 
+keywords: license, licensing, acquire, Capacity Tiers 
+summary: Cuando se utiliza el sistema de licencias Capacity Tiers, necesitas adquirir un archivo de licencia para cada nodo ONTAP Select. El archivo de licencia define la capacidad de almacenamiento del nodo y se bloquea en el nodo a través del número de serie único de nueve dígitos asignado por NetApp. 
+---
+= Adquirir una licencia ONTAP Select Capacity Tier
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cuando se utiliza el sistema de licencias Capacity Tiers, necesitas adquirir un archivo de licencia para cada nodo ONTAP Select. El archivo de licencia define la capacidad de almacenamiento del nodo y se bloquea en el nodo a través del número de serie único de nueve dígitos asignado por NetApp.
+
+.Antes de empezar
+* Debes tener el número de serie de licencia de nueve dígitos asignado al nodo ONTAP Select por NetApp.
+* Deberías esperar al menos 24 horas después de la fecha de envío de tu orden de compra antes de adquirir un archivo de licencia.
+* Has revisado la link:sizing-capacity-tier-license.html["consideraciones para dimensionar una licencia Capacity Tiers"].
+
+
+.Acerca de esta tarea
+Debes realizar esta tarea para cada nodo ONTAP Select que requiera una licencia de Capacity Tiers.
+
+.Pasos
+. link:https://register.netapp.com/register/getlicensefile["Accede al sitio de licencias de ONTAP Select"^].
+. Inicia sesión usando las credenciales de tu cuenta de NetApp.
+. En la página *Generador de licencias*, selecciona la oferta de licencia que quieras en el cuadro desplegable.
+. Rellena los campos restantes en la página *License Generator*, incluido el *Product Serial #*.
++
+El "product serial #" es el número de serie del nodo ONTAP Select.
+
+. Selecciona *Submit*.
+. Una vez validada la solicitud, selecciona el método de entrega de la licencia.
++
+Puedes seleccionar *Descargar licencia* o *Enviar licencia por correo electrónico*.
+
+. Confirma que recibiste el archivo de licencia según el método de entrega que seleccionaste.
+
+
+.Después de que termines
+Debes cargar el archivo de licencia en la utilidad de administración Deploy antes de que pueda aplicarse a un nodo ONTAP Select.

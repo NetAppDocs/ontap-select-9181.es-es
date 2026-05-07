@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: deploy-evaluation-ontap-select-ovf-template.html 
+keywords: ontap, select, ovf, template, deployment, evaluation, license 
+summary: Puedes desplegar una instancia de evaluación de 90 días de un clúster de un solo nodo ONTAP Select. 
+---
+= Implementa una instancia de evaluación de 90 días de un clúster ONTAP Select
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Puedes implementar una instancia de evaluación de 90 días de un clúster de ONTAP Select que puede ir desde un clúster de un solo nodo hasta 99 nodos usando una plantilla OVF en VMware ESXi. Puedes descargar una licencia de evaluación si eres un cliente existente o nuevo. Por ejemplo, eres un cliente existente y quieres probar una nueva configuración antes de comprar una licencia.
+
+.Acerca de esta tarea
+* No es necesario obtener un número de serie ni una licencia de capacidad de almacenamiento de NetApp.
+* Puedes asignar la misma cantidad de almacenamiento para los datos de usuario que una licencia adquirida.
+* No se puede actualizar el nodo de una licencia de evaluación a una licencia comprada.
+* Sólo puedes usar una cuenta vCenter para desplegar la plantilla OVF. Actualmente no se admite la instalación directa en un host ESXi.
+* Debes instalar la plantilla OVF (contenida en un archivo ova) usando el cliente autónomo vSphere o el cliente web vSphere (la única opción para ESXi 8.0 y versiones posteriores). No usas la utilidad de administración ONTAP Select Deploy.
+
+
+
+
+== Paso 1: prepara el host del clúster ONTAP Select
+
+Utiliza los siguientes requisitos para preparar el host ESXi donde se despliega el clúster ONTAP Select. La descripción de la plataforma se basa en la configuración de tipo instancia estándar o pequeña con almacenamiento local de conexión directa (DAS) formateado usando el sistema de archivos VMFS-5 o VMFS-6.
+
+image:prepare_ESXi_host_requirements.png["Requisitos para preparar el host ESXi"]
+
+Para obtener información adicional sobre las opciones de configuración del host, consulta la link:esxi-host-configuration-and-preparation-checklist.html["Documentación de instalación de ONTAP Select"].
+
+
+
+== Paso 2: despliega un clúster de un solo nodo ONTAP Select usando una plantilla OVF
+
+Completa los siguientes pasos en un servidor host ESXi de 64 bits compatible.
+
+.Pasos
+. Ve a la página NetApp Evaluation Products Program y selecciona *ONTAP Select* para descargar la plantilla OVF de ONTAP Select en tu estación de trabajo local.
+. Sign in al cliente web de VMware vSphere usando una cuenta con privilegios de administración.
+. Selecciona el host usando una de las siguientes opciones:
++
+** Selecciona *Archivo* > *Desplegar plantilla OVF*.
+** Selecciona *Datacenter*. Luego haz clic derecho y selecciona *Deploy OVF Template*.
+
+
+. Selecciona el archivo OVA de origen de ONTAP Select en tu estación de trabajo local y luego selecciona *Siguiente*.
+. Revisa los detalles de la plantilla OVF y selecciona *Siguiente*.
+. Revisa los detalles del CLUF y selecciona *Aceptar*. Luego selecciona *Siguiente*.
+. Escribe el nombre de la nueva máquina virtual y selecciona *Siguiente*.
+. Si hay más de un almacén de datos disponible, selecciona el almacén de datos y selecciona *Siguiente*.
+. Selecciona *Thick Provision Lazy Zeroed* y luego selecciona *Siguiente*.
+. Selecciona las redes de datos y de gestión, luego selecciona *Siguiente*.
+. En la página *Propiedades*, proporciona todos los valores requeridos y selecciona *Siguiente*.
+. Revisa los detalles de la instalación y selecciona *Encender tras la instalación*.
+. Selecciona *Finalizar* para iniciar el proceso de despliegue.
+. Una vez desplegado el clúster de ONTAP Select, puedes configurar el clúster usando System Manager o la interfaz CLI. Debes asignar el disco utilizando la operación estándar de ONTAP *disk assign*.
+
+
+.Información relacionada
+* link:concept_lic_evaluation.html["Conoce las licencias de evaluación para implementaciones de ONTAP Select"]
+* link:http://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad"^]
+

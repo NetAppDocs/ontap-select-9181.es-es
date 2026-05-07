@@ -1,0 +1,95 @@
+---
+sidebar: sidebar 
+permalink: esxi-host-configuration-and-preparation-checklist.html 
+keywords: ontap select, pre-installation checklist, esxi, host preparation 
+summary: Prepara cada uno de los hosts hipervisor ESXi donde se despliega un nodo de ONTAP Select. Al preparar los hosts, evalúa cuidadosamente el entorno de despliegue para asegurarte de que los hosts están configurados correctamente y listos para soportar el despliegue de un clúster de ONTAP Select. 
+---
+= Lista de comprobación de configuración y preparación del host ESXi para ONTAP Select
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Prepara cada host hipervisor ESXi donde se despliegue un nodo de ONTAP Select. Al preparar los hosts, evalúa cuidadosamente el entorno de despliegue para asegurarte de que los hosts están correctamente configurados y listos para soportar el despliegue de un clúster de ONTAP Select.
+
+
+NOTE: La utilidad de administración ONTAP Select Deploy no realiza la configuración de red y almacenamiento necesaria de los hosts del hipervisor. Debes preparar manualmente cada host antes de desplegar un clúster de ONTAP Select.
+
+
+
+== Paso 1: prepara el host hipervisor ESXi
+
+Verifica la configuración del host ESXi y los puertos del firewall.
+
+.Pasos
+. Verifica que cada ESXi esté configurado con lo siguiente:
++
+** Un hipervisor preinstalado y compatible
+** Una licencia de VMware vSphere
+
+
+. Verifica que el mismo servidor vCenter pueda gestionar todos los hosts donde se haya desplegado un nodo de ONTAP Select dentro del clúster.
+. Verifica que los puertos del firewall estén configurados para permitir el acceso a vSphere. Estos puertos deben estar abiertos para admitir la conectividad de puerto serie a las máquinas virtuales ONTAP Select.
++
+[role="tabbed-block"]
+====
+.Recomendado
+--
+NetApp te recomienda que abras los siguientes puertos del cortafuegos para permitir el acceso a vSphere:
+
+** Puertos 7200 – 7400 (tráfico entrante y saliente)
+
+
+--
+.Predeterminado
+--
+Por defecto, VMware permite el acceso en los siguientes puertos:
+
+** Puerto 22 y puertos 1024 – 65535 (tráfico entrante)
+** Puertos 0 – 65535 (tráfico saliente)
+
+
+--
+====
++
+Para más información, consulta link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-security-8-0/securing-esxi-hosts/customizing-hosts-with-the-security-profile/esxi-firewall-configuration.html["Documentación de Broadcom VMware vSphere"^].
+
+. Familiarízate con los derechos que se requieren en vCenter. Consulta link:reference_plan_ots_vcenter.html["Servidor VMware vCenter"] para más información.
+
+
+
+
+== Paso 2: Revisar la configuración del clúster ONTAP Select
+
+Puedes desplegar ONTAP Select como un clúster de varios nodos o como un clúster de un solo nodo. En muchos casos, es preferible un clúster de varios nodos debido a la capacidad de almacenamiento adicional y a la capacidad de alta disponibilidad (HA).
+
+Las siguientes figuras ilustran las redes ONTAP Select utilizadas con un clúster de un solo nodo y un clúster de cuatro nodos.
+
+[role="tabbed-block"]
+====
+.Clúster de un solo nodo
+--
+La siguiente figura ilustra un clúster de un solo nodo. La red externa transporta el tráfico de cliente, gestión y replicación entre clústeres (SnapMirror/SnapVault).
+
+image:CHK_01.jpg["Clúster de un solo nodo que muestra una red"]
+
+--
+.Clúster de cuatro nodos
+--
+La siguiente figura ilustra un clúster de cuatro nodos que muestra dos redes. La red interna permite la comunicación entre los nodos para dar soporte a los servicios de red del clúster ONTAP. La red externa transporta tráfico de cliente, gestión y replicación entre clústeres (SnapMirror/SnapVault).
+
+image:CHK_02.jpg["Clúster de cuatro nodos que muestra dos redes"]
+
+--
+.Un solo nodo en un clúster de cuatro nodos
+--
+La siguiente figura ilustra la configuración de red típica para una única máquina virtual ONTAP Select dentro de un clúster de cuatro nodos. Existen dos redes separadas: ONTAP-interna y ONTAP-externa.
+
+image:CHK_03.jpg["Un solo nodo en un clúster de cuatro nodos"]
+
+--
+====

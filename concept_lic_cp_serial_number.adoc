@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: concept_lic_cp_serial_number.html 
+keywords: license, licensing, Capacity Pools, node serial numbers 
+summary: Con el modelo de licencias Capacity Tiers, el número de serie de nueve dígitos del nodo coincide con el número de serie de la licencia asignado al nodo. Sin embargo, los números de serie asignados a los nodos que utilizan el modelo de licencias Capacity Pools tienen un formato diferente. 
+---
+= Números de serie de nodos para el modelo de licencia de ONTAP Select Capacity Pools
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Con el modelo de licencias Capacity Tiers, el número de serie de nueve dígitos del nodo coincide con el número de serie de la licencia asignado al nodo. Sin embargo, los números de serie asignados a los nodos que utilizan el modelo de licencias Capacity Pools tienen un formato diferente.
+
+El número de serie de un nodo que utiliza licencias de Capacity Pools tiene el siguiente formato:
+
+`999 ppppppppp nnnnnnnn`
+
+
+NOTE: Se han añadido espacios para mayor claridad, pero no forman parte del número de serie real.
+
+La siguiente tabla describe cada sección del número de serie del nodo de izquierda a derecha.
+
+[cols="15,85"]
+|===
+| Sección | Descripción 
+
+
+| '999' | Valor constante de tres dígitos reservado por NetApp. 
+
+
+| ppppppppp | Número de serie de licencia variable de nueve dígitos asignado al grupo de capacidad por NetApp 
+
+
+| nnnnnnnn | Valor variable de ocho dígitos generado por el License Manager para cada nodo que utiliza el Capacity Pool 
+|===
+
+CAUTION: Al abrir un caso con NetApp support que involucra un nodo que usa una licencia de Capacity Pool, debes proporcionar el número de serie de nueve dígitos de la licencia de Capacity Pool. No puedes proporcionar el número de serie completo de veinte dígitos del nodo. Puedes obtener el número de serie de la licencia a partir del número de serie del nodo omitiendo los tres primeros dígitos del número de serie del nodo ('999') y extrayendo los siguientes nueve dígitos (ppppppppp).

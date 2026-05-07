@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: sizing-capacity-tier-license.html 
+keywords: license, licensing, Capacity Tiers, usable, space 
+summary: La licencia Capacity Tiers se basa en la capacidad de disco subyacente gestionada por cada nodo y no en la capacidad utilizable del nodo, HA-pair o clúster. Cada licencia Capacity Tiers se asigna a un número de serie de nodo individual para una capacidad especificada y requiere un contrato de soporte adjunto. 
+---
+= Consideraciones para dimensionar una licencia de ONTAP Select Capacity Tiers
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+La licencia Capacity Tiers se basa en la capacidad de disco subyacente gestionada por cada nodo ONTAP Select y no en la capacidad utilizable del nodo, HA-pair o clúster. Cada licencia Capacity Tiers se asigna a un número de serie de nodo individual para una capacidad especificada y requiere un contrato de soporte adjunto.
+
+La capacidad bajo licencia para una licencia de Capacity Tiers está en cantidades completas de TB, con un mínimo de 1 TB. Calculas la capacidad bajo licencia multiplicando la cantidad de espacio utilizable por el factor de sobrecarga. El factor de sobrecarga difiere entre un clúster de un solo nodo y un clúster multinodo (basado en pares de HA):
+
+* El factor de sobrecarga para clústeres de un solo nodo es 1,13
+* El factor de sobrecarga para clústeres multinodo es 2.67
+
+
+Calcula la capacidad bajo licencia según el espacio utilizable para asegurarte de que tienes suficiente para tu implementación.
+
+[cols="25,30,45"]
+|===
+| Descripción | Nodo único | Par HA 
+
+
+| Espacio utilizable | 10 TB | 5 TB por nodo 10 TB para par de HA 
+
+
+| Espacio licenciado | 12 TB (10 x 1,13 = 11,3, redondea al siguiente TB completo) | Dos licencias de 14 TB (5 x 2.67 = 13.35, redondeado al siguiente TB completo) 
+
+
+| Espacio máximo utilizable por nodo *Nota*: El espacio máximo gestionado por nodo o par de HA es 400 TB | 353 TB (400 / 1.13)  a| 
+Por nodo en un par de HA:
+
+* 149 TB (400 / 2.67)
+
+
+Por par de HA en un clúster multinodo:
+
+* Dos nodos: 298 TB (2 x 149)
+* Cuatro nodos: 596 TB (4 x 149)
+* Seis nodos: 894 TB (6 x 149)
+* Ocho nodos: 1.192 TB (8 x 149)
+* Diez nodos: 1,490 TB (10 x 149)
+* Doce nodos: 1,788 TB (12 x 149)
+
+
+|===
+.Qué sigue
+link:task_lic_acquire_ct.html["Adquiere una licencia Capacity Tier para ONTAP Select"]

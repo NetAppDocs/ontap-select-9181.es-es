@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: concept_api_understanding_scripts.html 
+keywords: rest api, deploy rest api, rest, python, python scripts, understanding 
+summary: Los scripts de Python de ejemplo te permiten realizar varias tareas diferentes. Deberías entender los scripts antes de usarlos en una instancia de Deploy en producción. 
+---
+= Entiende los scripts de Python para ONTAP Select Deploy
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Los scripts de Python de ejemplo te permiten realizar varias tareas diferentes. Deberías entender los scripts antes de usarlos en una instancia de Deploy en producción.
+
+
+
+== Características de diseño comunes
+
+Los guiones se han diseñado con las siguientes características comunes:
+
+* Ejecuta desde la interfaz de línea de comandos en una máquina cliente. Puedes ejecutar los scripts de Python desde cualquier máquina cliente configurada correctamente. Consulta _Antes de comenzar_ para más información.
+* Acepta parámetros de entrada en la CLI Cada script se controla en la CLI mediante parámetros de entrada.
+* Lee el archivo de entrada. Cada script lee un archivo de entrada según su propósito. Al crear o eliminar un clúster, tienes que proporcionar un archivo de configuración JSON. Al agregar una licencia de nodo, tienes que proporcionar un archivo de licencia válido.
+* Usa un módulo de soporte común. El módulo de soporte común _deploy_requests.py_ contiene una sola clase. Se importa y se usa en cada uno de los scripts.
+
+
+
+
+== Crear un clúster
+
+Puedes crear un clúster ONTAP Select utilizando el script cluster.py. Según los parámetros de la línea de comandos y el contenido del archivo de entrada JSON, puedes modificar el script para adaptarlo a tu entorno de implementación de la siguiente manera:
+
+* Hipervisor Puedes implementarlo en ESXi o KVM (según la versión de Deploy). Al implementarlo en ESXi, el hipervisor puede ser administrado por vCenter o puede ser un host independiente.
+* Tamaño del clúster Puedes implementar un clúster de un solo nodo o de varios nodos.
+* Licencia de evaluación o de producción Puedes implementar un clúster con una licencia de evaluación o con una licencia adquirida para producción.
+
+
+Los parámetros de entrada de la línea de comandos para el script incluyen:
+
+* Nombre de host o dirección IP del servidor de implementación
+* Contraseña para la cuenta de usuario admin
+* Nombre del archivo de configuración JSON
+* Indicador detallado para la salida del mensaje
+
+
+
+
+== Agregar una licencia de nodo
+
+Si decides implementar un clúster de producción, debes agregar una licencia para cada nodo usando el script _add_license.py_. Puedes agregar la licencia antes o después de implementar el clúster.
+
+Los parámetros de entrada de la línea de comandos para el script incluyen:
+
+* Nombre de host o dirección IP del servidor de implementación
+* Contraseña para la cuenta de usuario admin
+* Nombre del archivo de licencia
+* Nombre de usuario de ONTAP con privilegios para agregar la licencia
+* Contraseña para el usuario ONTAP
+
+
+
+
+== Eliminar un clúster
+
+Puedes eliminar un clúster ONTAP Select existente utilizando el script _delete_cluster.py_.
+
+Los parámetros de entrada de la línea de comandos para el script incluyen:
+
+* Nombre de host o dirección IP del servidor de implementación
+* Contraseña para la cuenta de usuario admin
+* Nombre del archivo de configuración JSON
+

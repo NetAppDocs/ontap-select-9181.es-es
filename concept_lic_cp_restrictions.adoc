@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: concept_lic_cp_restrictions.html 
+keywords: license, licensing, Capacity Pools, restrictions 
+summary: A continuación se presentan las restricciones que se aplican al utilizar el modelo de licencia Capacity Pool. 
+---
+= Restricciones de despliegue para el modelo de licencia ONTAP Select Capacity Pools
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+A continuación se presentan las restricciones que se aplican al utilizar el modelo de licencia Capacity Pool.
+
+.Modelo de licencia coherente por clúster
+Todos los nodos de un clúster de ONTAP Select deben utilizar el mismo modelo de licencia, ya sea Capacity Tiers o Capacity Pools. No se pueden mezclar los tipos de licencia de los nodos de un solo clúster.
+
+.Todos los nodos de un clúster utilizan la misma instancia de License Manager
+Todos los nodos con una licencia de Capacity Pool en un clúster ONTAP Select deben usar la misma instancia de License Manager. Porque hay una instancia de License Manager dentro de cada instancia de Deploy, esta restricción es una reafirmación del requisito existente de que la misma instancia de Deploy debe gestionar todos los nodos en un clúster.
+
+.Un fondo de capacidad por nodo
+Cada nodo puede alquilar almacenamiento de exactamente un Capacity Pool. Un nodo no puede utilizar dos o más Capacity Pools.
+
+.Mismo pool para los nodos de un par de alta disponibilidad
+Los dos nodos de un solo par de alta disponibilidad deben alquilar almacenamiento del mismo Capacity Pool. Sin embargo, los distintos pares de alta disponibilidad de un mismo clúster pueden alquilar almacenamiento de distintos Capacity Pools gestionados por el mismo License Manager.
+
+.Duración de la licencia de almacenamiento
+Debes elegir una duración de licencia cuando adquieras la licencia de almacenamiento de NetApp. Por ejemplo, una licencia podría ser válida por un año.
+
+.Duración del arrendamiento del agregado de datos
+Cuando un nodo ONTAP Select solicita un arrendamiento de almacenamiento para un agregado de datos, el License Manager proporciona un arrendamiento por una duración específica según la configuración del Capacity Pool. Puedes configurar la duración del arrendamiento para cada pool entre una hora y siete días. La duración predeterminada del arrendamiento es de 24 horas.
+
+.Dirección IP estática asignada a Deploy
+Debes asignar una dirección IP estática a la utilidad de administración Deploy cuando se utilice el modelo de licencia Capacity Pools.

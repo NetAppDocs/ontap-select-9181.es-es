@@ -1,0 +1,141 @@
+---
+sidebar: sidebar 
+permalink: concept_perf_premium_ha_direct_ssd_96.html 
+keywords: ontap select, performance 
+summary: Información de rendimiento para ONTAP Select 9.6 rendimiento - almacenamiento SSD premium de alta disponibilidad conectado directamente. 
+---
+= Rendimiento de ONTAP Select 9.6: almacenamiento SSD Premium HA conectado directamente
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Información de rendimiento para la plataforma de referencia.
+
+
+
+== Plataforma de referencia
+
+Hardware ONTAP Select (Premium XL) (por nodo)
+
+* FUJITSU PRIMERGY RX2540 M4:
++
+** Procesador Intel(R) Xeon(R) Gold 6142b a 2,6 GHz
+** 32 núcleos físicos (16 x 2 sockets), 64 lógicos
+** 256 GB de RAM
+** Unidades por host: 24 SSD de 960GB
+** ESXi 6.5U1
+
+
+
+
+Hardware del cliente
+
+* 5 clientes NFSv3 IBM 3550m4
+
+
+Información de configuración
+
+* SW RAID 1 x 9 + 2 RAID-DP (11 discos)
+* 22+1 RAID-5 (RAID-0 en ONTAP) / NVRAM de caché RAID
+* No se utilizan funciones de eficiencia de almacenamiento (compresión, deduplicación, copias instantáneas, SnapMirror, etc.)
+
+
+La siguiente tabla muestra el rendimiento medido frente a cargas de trabajo de lectura/escritura en un par de nodos ONTAP Select de alta disponibilidad (HA) que utilizan RAID por software y RAID por hardware. Las mediciones de rendimiento se realizaron utilizando la herramienta de generación de carga SIO.
+
+
+NOTE: Estas cifras de rendimiento se basan en ONTAP Select 9.6.
+
+*Resultados de rendimiento para un clúster ONTAP Select de un solo nodo (parte de una instancia mediana de cuatro nodos) en una unidad SSD de almacenamiento de conexión directa (DAS), con RAID por software y RAID por hardware*
+
+[cols="6*"]
+|===
+| Descripción | Lectura secuencial 64 KiB | Escritura secuencial 64 KiB | Lectura aleatoria de 8 KiB | Escritura aleatoria 8 KiB | Lectura/escritura aleatoria (50/50) 8 KiB 
+
+
+| ONTAP Select instancia grande con RAID por software DAS (SSD) | 2171 MiBps | 559 MiBps | 954 MiBps | 394 MiBps | 564 MiBps 
+
+
+| Instancia mediana de ONTAP Select con RAID por software DAS (SSD) | 2090 MiBps | 592 MiBps | 677MiBps | 335 MiBps | 441 3MiBps 
+
+
+| Instancia mediana de ONTAP Select con RAID de hardware DAS (SSD) | 2038 MiBps | 520 MiBps | 578 MiBps | 325 MiBps | 399 MiBps 
+|===
+
+
+=== lectura secuencial de 64K
+
+Detalles:
+
+* E/S directa SIO habilitada
+* 2 nodos
+* 2 tarjetas de red de datos por nodo
+* 1 agregado de datos por nodo (RAID de hardware de 2TB), (RAID de software de 8TB)
+* 64 procesos SIO, 1 hilo por proceso
+* 32 volúmenes por nodo
+* 1 archivo por procesador; los archivos son de 12000MB cada uno
+
+
+
+
+=== escritura secuencial de 64K
+
+Detalles:
+
+* E/S directa SIO habilitada
+* 2 nodos
+* 2 tarjetas de interfaz de red de datos (NIC) por nodo
+* 1 agregado de datos por nodo (RAID de hardware de 2TB), (RAID de software de 4TB)
+* 128 procesos SIO, 1 hilo por proceso
+* Volúmenes por nodo: 32 (RAID por hardware), 16 (RAID por software)
+* 1 archivo por procesador; cada archivo es de 30720MB
+
+
+
+
+=== Lectura aleatoria de 8K
+
+Detalles:
+
+* E/S directa SIO habilitada
+* 2 nodos
+* 2 tarjetas de red de datos por nodo
+* 1 agregado de datos por nodo (RAID de hardware de 2TB), (RAID de software de 4TB)
+* 64 procesos SIO, 8 subprocesos por proceso
+* Volúmenes por nodo: 32
+* 1 archivo por procesador; los archivos son de 12228MB cada uno
+
+
+
+
+=== Escritura aleatoria de 8K
+
+Detalles:
+
+* E/S directa SIO habilitada
+* 2 nodos
+* 2 tarjetas de red de datos por nodo
+* 1 agregado de datos por nodo (RAID de hardware de 2TB), (RAID de software de 4TB)
+* 64 procesos SIO, 8 subprocesos por proceso
+* Volúmenes por nodo: 32
+* 1 archivo por procesador; cada archivo es de 8192MB
+
+
+
+
+=== 8K aleatorio 50% escritura 50% lectura
+
+Detalles:
+
+* E/S directa SIO habilitada
+* 2 nodos
+* 2 tarjetas de red de datos por nodo
+* 1 agregado de datos por nodo (RAID de hardware de 2TB), (RAID de software de 4TB)
+* 64 SIO proc208 subprocesos por proc
+* Volúmenes por nodo: 32
+* 1 archivo por procesador; los archivos son de 12228MB cada uno
+

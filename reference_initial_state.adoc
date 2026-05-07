@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: reference_initial_state.html 
+keywords: install, installing, initial state, cluster initial state 
+summary: Debes conocer el estado inicial de un clúster una vez desplegado y configurar el clúster según sea necesario para tu entorno. 
+---
+= Estado inicial del clúster ONTAP Select tras la implantación
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Debes conocer el estado inicial de un clúster una vez desplegado y configurar el clúster según sea necesario para tu entorno.
+
+Un clúster ONTAP Select tiene varias características después de su creación.
+
+
+NOTE: Restringir los roles y permisos para la cuenta de administrador de ONTAP puede limitar la capacidad de ONTAP Select Deploy para gestionar el clúster. Para más información, consulta el artículo de base de conocimientos link:https://kb.netapp.com/onprem/ontap/ONTAP_Select/OTS_Deploy_cluster_refresh_fails_with_error%3A_ONTAPSelectSysCLIVersionFailed_zapi_returned_bad_status_0%3A_None["OTS Deploy cluster refresh falla con error"^].
+
+.LIF
+Se asignan dos tipos de LIF especificados por el cliente:
+
+* Gestión de clúster (uno por clúster)
+* Gestión de nodos (uno por nodo)
+
+
+
+NOTE: Un clúster multinodo tiene una red interna con LIFs autogeneradas.
+
+.SVM
+Hay tres SVM activas:
+
+* SVM de administración
+* Nodo SVM
+* Sistema (clúster) SVM
+
+
+
+NOTE: Las SVM de datos no se crean como parte del despliegue del clúster de ONTAP Select. El administrador del clúster debe crearlas después del despliegue. Para obtener más información, consulta https://docs.netapp.com/us-en/ontap/nfs-config/create-svms-data-access-task.html["Crear una SVM"^].
+
+.Agregados
+Se crea el agregado raíz.
+
+.Funciones
+Todas las funciones tienen licencia y están disponibles. Tanto SnapLock como FabricPool requieren licencias independientes.
+
+.Información relacionada
+* link:https://docs.netapp.com/us-en/ontap/system-admin/types-svms-concept.html["Tipos de SVM contenidos en un clúster"^]
+* link:reference_lic_ontap_features.html["Funciones de ONTAP activadas por defecto"]
+

@@ -18,12 +18,14 @@ Hay varias cosas que debes tener en cuenta antes de usar la página de documenta
 
 
 
+[[deployment-plan]]
 == Plan de despliegue
 
 Si tienes intención de realizar llamadas a la API como parte de tareas específicas de despliegue o administración, deberías considerar crear un plan de despliegue. Estos planes pueden ser formales o informales y, en general, contienen tus objetivos y las llamadas a la API que se van a usar. Consulta los procesos de flujo de trabajo usando la API de REST de Deploy para más información.
 
 
 
+[[json-examples-and-parameter-definitions]]
 == Ejemplos y definiciones de parámetros JSON
 
 Cada llamada a la API se describe en la página de documentación utilizando un formato coherente. El contenido incluye notas de implementación, parámetros de consulta y códigos de estado HTTP. Además, puedes mostrar detalles sobre el JSON utilizado con las solicitudes y respuestas de la API de la siguiente manera:
@@ -34,6 +36,7 @@ Cada llamada a la API se describe en la página de documentación utilizando un 
 
 
 
+[[caution-when-issuing-api-calls]]
 == Precaución al realizar llamadas a la API
 
 Todas las operaciones de la API que realices utilizando la página de documentación de Deploy son operaciones en directo. Debes tener cuidado de no crear, actualizar o eliminar por error la configuración u otros datos.

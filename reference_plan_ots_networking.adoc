@@ -18,6 +18,7 @@ Debes configurar correctamente la red del hipervisor antes de desplegar ONTAP Se
 
 
 
+[[virtual-switch-options]]
 == Opciones de conmutador virtual
 
 Debes configurar un conmutador virtual en cada uno de los hosts de ONTAP Select para admitir la red externa y la red interna (solo para clústeres de varios nodos). Como parte de la implementación de un clúster de varios nodos, deberías probar la conectividad de red en la red interna del clúster.
@@ -27,12 +28,14 @@ NOTE: Para obtener más información sobre cómo configurar un vSwitch en un hos
 
 
 
+[[upgrade-to-vmxnet3-esxi-only]]
 == Actualiza a VMXNET3 (solo ESXi)
 
 A partir de ONTAP Select 9.5 con Deploy 2.10, VMXNET3 es el controlador de red predeterminado que se incluye con las nuevas implementaciones de clúster en VMware ESXi. Si actualizas un nodo de ONTAP Select antiguo a la versión 9.5 o posterior, el controlador no se actualiza automáticamente.
 
 
 
+[[cluster-mtu]]
 == MTU de clúster
 
 Se utiliza una red interna independiente para conectar los nodos ONTAP Select en un clúster multinodo. Normalmente el tamaño de MTU para esta red es 9000. Sin embargo, hay situaciones en las que este tamaño de MTU es demasiado grande para la red que conecta los nodos ONTAP Select. Para acomodar las tramas más pequeñas, el tamaño de MTU utilizado por ONTAP Select en la red interna puede estar en el rango de 7500-9000 bytes.
@@ -49,6 +52,7 @@ NOTE: Puedes establecer manualmente el valor de MTU del clúster si es necesario
 
 
 
+[[two-nic-host-with-standard-vswitch-esxi-only]]
 == Host de dos NIC con vSwitch estándar (solo ESXi)
 
 Para mejorar el rendimiento de ONTAP Select en una configuración de dos NIC, debes aislar el tráfico de red interno y externo utilizando dos grupos de puertos. Esta recomendación se aplica a la siguiente configuración específica:
@@ -76,6 +80,7 @@ Consulta la sección link:concept_nw_concepts_chars.html["Análisis profundo de 
 
 
 
+[[four-nic-host-with-standard-vswitch-esxi-only]]
 == Host de cuatro NIC con vSwitch estándar (solo ESXi)
 
 Para mejorar el rendimiento de ONTAP Select en una configuración de cuatro NIC, debes aislar el tráfico de red interno y externo utilizando cuatro grupos de puertos. Esta recomendación se aplica a la siguiente configuración específica:
@@ -115,6 +120,7 @@ Consulta la sección link:concept_nw_concepts_chars.html["Análisis profundo de 
 
 
 
+[[network-traffic-requirements]]
 == Requisitos de tráfico de red
 
 Debes asegurarte de que tus cortafuegos están configurados correctamente para permitir que el tráfico de red fluya entre los distintos participantes en un entorno de despliegue de ONTAP Select.

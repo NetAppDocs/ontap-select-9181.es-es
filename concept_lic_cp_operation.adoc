@@ -18,6 +18,7 @@ El modelo de licencia Capacity Pools es diferente del modelo Capacity Tiers. En 
 
 
 
+[[license-manager]]
 == Gestor de licencias
 
 El Administrador de licencias se ejecuta como un proceso independiente dentro de cada instancia de la utilidad de administración Deploy. Algunas de las funciones que ofrece LM son:
@@ -29,6 +30,7 @@ El Administrador de licencias se ejecuta como un proceso independiente dentro de
 
 
 
+[[lease-characteristics]]
 == Características del arrendamiento
 
 El almacenamiento asignado para cada agregado de datos en un nodo que utiliza una licencia Capacity Pool debe tener un contrato de arrendamiento asociado. El nodo solicita un contrato de arrendamiento de almacenamiento y si la capacidad está disponible, el License Manager responde con un contrato de arrendamiento. Cada contrato de arrendamiento tiene los siguientes atributos explícitos o implícitos:
@@ -53,6 +55,7 @@ Los arrendamientos tienen una duración de entre una hora y siete días dependie
 
 
 
+[[license-lock-id]]
 == ID de bloqueo de licencia
 
 Cada instancia del Gestor de licencias, y por tanto cada instancia de la utilidad Deploy correspondiente, se identifica con un número único de 128 bits. Este número se combina con el número de serie de nueve dígitos de la licencia Capacity Pool para bloquear el pool a una instancia específica del Gestor de licencias (que es efectivamente una instancia de Deploy). Debes proporcionar ambos valores en el sitio de soporte de NetApp como parte de la generación del archivo de licencia de NetApp (NLF).
@@ -68,6 +71,7 @@ Deploy muestra esta página cuando inicias sesión por primera vez. También pue
 
 
 
+[[basic-lease-operations]]
 == Operaciones básicas de arrendamiento
 
 Un nodo ONTAP Select debe localizar o solicitar un contrato de capacidad válido cada vez que se crea, amplía o modifica un agregado de datos. Puedes usar un contrato obtenido de una solicitud anterior que todavía sea válido, o puedes solicitar uno nuevo si lo necesitas. El nodo ONTAP Select realiza los siguientes pasos para localizar un contrato de un grupo de capacidad:
@@ -83,6 +87,7 @@ Un nodo ONTAP Select debe localizar o solicitar un contrato de capacidad válido
 
 
 
+[[return-storage-capacity-to-a-capacity-pool]]
 == Devuelve la capacidad de almacenamiento a un Capacity Pool
 
 La capacidad de almacenamiento se asigna desde un Capacity Pool según sea necesario y cada nueva solicitud puede reducir el almacenamiento disponible en el pool. La capacidad de almacenamiento se devuelve al pool en varias situaciones, entre ellas:

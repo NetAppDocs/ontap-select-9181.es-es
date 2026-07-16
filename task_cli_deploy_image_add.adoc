@@ -24,6 +24,7 @@ NOTE: Sólo debes añadir una imagen de ONTAP Select con una versión anterior a
 
 
 
+[[step-1-download-the-install-image]]
 == Paso 1: descarga la imagen de instalación
 
 Para comenzar el proceso de añadir una imagen de ONTAP Select a una instancia de la utilidad Deploy, debes descargar la imagen de instalación desde el sitio de soporte de NetApp. La imagen de instalación de ONTAP Select está formateada como un único archivo comprimido.
@@ -38,6 +39,7 @@ Para comenzar el proceso de añadir una imagen de ONTAP Select a una instancia d
 
 
 
+[[step-2-upload-the-install-image-to-deploy]]
 == Paso 2: Sube la imagen de instalación a Deploy
 
 Después de adquirir la imagen de instalación de ONTAP Select, debes cargar el archivo en la máquina virtual de Deploy.
@@ -67,6 +69,7 @@ El archivo de instalación del nodo se almacena en el directorio inicial del usu
 
 
 
+[[step-3-add-the-install-image]]
 == Paso 3: agrega la imagen de instalación
 
 Agrega la imagen de instalación de ONTAP Select al directorio de imágenes de Deploy para que esté disponible al implementar un nuevo clúster.
@@ -90,6 +93,7 @@ shell bash
 
 
 
+[[step-4-display-the-available-install-images]]
 == Paso 4: muestra las imágenes de instalación disponibles
 
 Muestra las imágenes de ONTAP Select que están disponibles al desplegar un nuevo clúster.

@@ -18,6 +18,7 @@ Si estás ejecutando ONTAP Select en VMware ESXi, puedes actualizar el software 
 
 
 
+[[prepare-to-upgrade-vmware-esxi]]
 == Prepárate para actualizar VMware ESXi
 
 Prepara y selecciona el procedimiento de actualización adecuado para tu entorno antes de actualizar el software ESXi en los hipervisores que alojan un clúster ONTAP Select.
@@ -65,6 +66,7 @@ Si seleccionas un procedimiento de actualización que usa la utilidad Deploy, de
 
 
 
+[[upgrade-a-single-node-cluster-using-deploy]]
 == Actualizar un clúster de un solo nodo mediante Deploy
 
 Puedes usar la utilidad de administración Deploy como parte del procedimiento para actualizar el hipervisor VMware ESXi que aloja un clúster de un solo nodo ONTAP Select.
@@ -102,6 +104,7 @@ Deberías realizar una operación de actualización del clúster usando la utili
 
 
 
+[[upgrade-a-multi-node-cluster-using-deploy]]
 == Actualiza un clúster multinodo usando Deploy
 
 Puedes usar la utilidad de administración Deploy como parte del procedimiento para actualizar los hipervisores VMware ESXi que alojan un clúster multinodo ONTAP Select.
@@ -156,6 +159,7 @@ Debes realizar el procedimiento de actualización para cada host utilizado en el
 
 
 
+[[upgrade-a-single-node-cluster-without-deploy]]
 == Actualizar un clúster de un solo nodo sin Deploy
 
 Puedes actualizar el hipervisor VMware ESXi que aloja un clúster de un solo nodo ONTAP Select sin utilizar la utilidad de administración Deploy.
@@ -192,6 +196,7 @@ Deberías realizar una operación de actualización del clúster usando la utili
 
 
 
+[[upgrade-a-multi-node-cluster-without-deploy]]
 == Actualizar un clúster multinodo sin Deploy
 
 Puedes actualizar los hipervisores VMware ESXi que alojan un clúster multinodo ONTAP Select sin utilizar la utilidad de administración Deploy.

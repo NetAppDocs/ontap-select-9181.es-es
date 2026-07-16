@@ -26,6 +26,7 @@ Puedes implementar una instancia de evaluación de 90 días de un clúster de ON
 
 
 
+[[step-1-prepare-the-ontap-select-cluster-host]]
 == Paso 1: prepara el host del clúster ONTAP Select
 
 Utiliza los siguientes requisitos para preparar el host ESXi donde se despliega el clúster ONTAP Select. La descripción de la plataforma se basa en la configuración de tipo instancia estándar o pequeña con almacenamiento local de conexión directa (DAS) formateado usando el sistema de archivos VMFS-5 o VMFS-6.
@@ -36,6 +37,7 @@ Para obtener información adicional sobre las opciones de configuración del hos
 
 
 
+[[step-2-deploy-a-single-node-ontap-select-cluster-using-an-ovf-template]]
 == Paso 2: despliega un clúster de un solo nodo ONTAP Select usando una plantilla OVF
 
 Completa los siguientes pasos en un servidor host ESXi de 64 bits compatible.

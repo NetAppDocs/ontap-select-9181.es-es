@@ -28,6 +28,7 @@ Verifica que ONTAP Select Deploy no se use para realizar ninguna otra tarea dura
 
 
 
+[[step-1-download-the-upgrade-package]]
 == Paso 1: descarga el paquete de actualización
 
 Para comenzar el proceso de actualización, descarga el archivo de actualización de ONTAP Select Deploy desde el sitio de soporte de NetApp. El paquete de actualización está formateado como un solo archivo comprimido.
@@ -42,6 +43,7 @@ Para comenzar el proceso de actualización, descarga el archivo de actualizació
 
 
 
+[[step-2-upload-the-package-to-the-ontap-select-deploy-virtual-machine]]
 == Paso 2: sube el paquete a la máquina virtual ONTAP Select Deploy
 
 Después de descargar el paquete, necesitas subir el archivo a la máquina virtual de ONTAP Select Deploy.
@@ -67,6 +69,7 @@ El archivo de actualización se almacena en el directorio inicial del usuario ad
 
 
 
+[[step-3-apply-the-upgrade-package]]
 == Paso 3: aplica el paquete de actualización
 
 Después de que subas el archivo de actualización a la máquina virtual de ONTAP Select Deploy, puedes aplicar la actualización.

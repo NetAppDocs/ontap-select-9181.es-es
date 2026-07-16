@@ -21,12 +21,14 @@ NOTE: También necesitas el nombre de dominio completo o la dirección IP del se
 
 
 
+[[administrative-privileges]]
 == Privilegios de administración
 
 A continuación se presentan los privilegios de administración mínimos necesarios para crear y gestionar un clúster ONTAP Select.
 
 
 
+[[datastore]]
 === Almacén de datos
 
 * Asignar espacio
@@ -38,6 +40,7 @@ A continuación se presentan los privilegios de administración mínimos necesar
 
 
 
+[[host]]
 === Host
 
 Configuración::
@@ -61,6 +64,7 @@ Operaciones locales::
 
 
 
+[[network]]
 === Red
 
 * Asignar red
@@ -68,6 +72,7 @@ Operaciones locales::
 
 
 
+[[virtual-machine]]
 === Máquina virtual
 
 Configuración:: Todos los privilegios de la categoría.
@@ -78,9 +83,10 @@ Aprovisionamiento:: Todos los privilegios de la categoría.
 
 
 
+[[vapp]]
 === vApp
 
 Todos los privilegios de la categoría.
 
 .Información relacionada
-link:https://docs.netapp.com/us-en/ontap-select/reference_plan_dep_vmware.html#ontap-select-deploy-vmware-vcenter-server-considerations["Conoce los privilegios de VMware vSphere para vSAN ESA en vCenter"]
+link:reference_plan_dep_vmware.html#vmware-vcenter-server-considerations["Conoce los privilegios de VMware vSphere para vSAN ESA en vCenter"]

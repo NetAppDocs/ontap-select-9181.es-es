@@ -21,6 +21,7 @@ CAUTION: No debes modificar directamente la configuración de una máquina virtu
 
 
 
+[[hypervisor-independent]]
 == Hipervisor independiente
 
 Tanto ONTAP Select como la utilidad de administración ONTAP Select Deploy son independientes del hipervisor.
@@ -64,6 +65,7 @@ No puedes agregar un nodo ONTAP Select directamente a un clúster ONTAP basado e
 
 
 
+[[vmware-hypervisor-environment]]
 == Entorno de hipervisor VMware
 
 Existen varios requisitos y restricciones específicos del entorno VMware que debes tener en cuenta antes de instalar la utilidad ONTAP Select Deploy en un entorno VMware.
@@ -106,13 +108,14 @@ ONTAP Select Deploy solo admite la versión 4 de IP (IPv4). La versión 6 de IP 
 
 
 
-== Consideraciones para el servidor VMware vCenter en ONTAP Select Deploy
+[[vmware-vcenter-server-considerations]]
+== Aspectos a tener en cuenta sobre el servidor VMware vCenter
+
+.Privilegios de VMware vSphere para ESA
+Para crear y gestionar vSAN Express Storage Architecture (ESA) en vCenter, necesitas los siguientes privilegios de la Content Library de vSphere:
 
 
-
-=== Privilegios de VMware vSphere para ESA
-
-A continuación se enumeran los privilegios específicos para la vSphere biblioteca de contenidos que necesitas para crear y administrar vSAN Express Storage Architecture (ESA) en vCenter:
+NOTE: Para acceder a los privilegios de la Content Library, un administrador debe concederte acceso a los permisos globales en vCenter Server.
 
 * Agregar elemento a la biblioteca
 * Crear biblioteca local

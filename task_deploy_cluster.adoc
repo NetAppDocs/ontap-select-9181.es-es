@@ -23,6 +23,8 @@ TIP: También puedes link:https://docs.netapp.com/us-en/ontap-select/task_cli_de
 
 
 
+[[step-1-prepare-for-the-deployment]]
+[[prepare-for-deploy]]
 == Paso 1: prepara el despliegue
 
 Prepara el despliegue para asegurarte de que sea un éxito.
@@ -87,6 +89,8 @@ Si estás implementando un clúster de varios nodos, deberías estar familiariza
 
 
 
+[[step-2-create-a-single-node-or-multi-node-cluster]]
+[[create-single-or-multi-node-cluster]]
 == Paso 2: crea un clúster de un solo nodo o de varios nodos
 
 Puedes usar la interfaz web de usuario de ONTAP Select Deploy para implementar un clúster de un solo nodo o de varios nodos de ONTAP Select.
@@ -196,6 +200,7 @@ La página se actualiza automáticamente a intervalos regulares.
 ====
 
 
+[[step-3-complete-the-deployment]]
 == Paso 3: Completa el despliegue
 
 Después de desplegar el clúster, link:https://docs.netapp.com/us-en/ontap/system-admin/setup-autosupport-task.html["confirma que la función AutoSupport de ONTAP Select está configurada"^] y luego link:task_cli_clusters.html["Haz una copia de seguridad de los datos de configuración de ONTAP Select Deploy"].

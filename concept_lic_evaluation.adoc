@@ -38,6 +38,7 @@ Hay varias consideraciones a tener en cuenta al implementar y dar soporte a un c
 
 
 
+[[licensing-characteristics]]
 == Características de la licencia
 
 La licencia de evaluación ONTAP Select tiene las siguientes características:
@@ -53,6 +54,7 @@ La licencia de evaluación ONTAP Select tiene las siguientes características:
 
 
 
+[[upgrade-to-a-production-license]]
 == Actualiza a una licencia de producción
 
 Puedes actualizar un clúster de evaluación de ONTAP Select para que use una licencia de producción. Debes tener en cuenta las siguientes restricciones:

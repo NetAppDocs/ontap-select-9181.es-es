@@ -18,6 +18,7 @@ Existen varios requisitos de hardware y cuestiones de planificación que debes t
 
 
 
+[[hypervisor-requirements]]
 == Requisitos del hipervisor
 
 Existen varios requisitos relacionados con el hipervisor en el que se ejecuta ONTAP Select.
@@ -27,12 +28,14 @@ NOTE: Deberías revisar link:reference_release_notes.html["Notas de la versión 
 
 
 
+[[vmware-licensing]]
 === Licenciamiento de VMware
 
 Para desplegar un clúster de ONTAP Select, tu organización debe tener una licencia válida de VMware vSphere para los hosts hipervisor donde se ejecuta ONTAP Select. Debes usar las licencias que sean apropiadas para tu implementación.
 
 
 
+[[software-compatibility]]
 === Compatibilidad del software
 
 Puedes desplegar ONTAP Select en hipervisores KVM y ESXi.
@@ -69,12 +72,14 @@ NOTE: ESXi 7.0 GA ha alcanzado el estado de fin de disponibilidad. Si tienes cl�
 ====
 
 
+[[vmware-vcenter-and-standalone-esxi-hosts]]
 === VMware vCenter y hosts ESXi independientes
 
 Si un host hipervisor ESXi está gestionado por un servidor vCenter, debes registrar el host en la utilidad de administración Deploy usando las credenciales de vCenter. No puedes registrar el host como un host independiente usando las credenciales de ESXi.
 
 
 
+[[core-hardware-requirements]]
 == Requisitos básicos de hardware
 
 El host físico del hipervisor donde despliegas ONTAP Select debe cumplir varios requisitos de hardware. Puedes elegir cualquier plataforma para el host del hipervisor, siempre que cumpla los requisitos mínimos de hardware. Los siguientes proveedores ofrecen plataformas de hardware compatibles: Cisco, Dell, HP, Fujitsu, Lenovo y Supermicro.
@@ -86,6 +91,7 @@ Consulta la  https://mysupport.netapp.com/matrix["Herramienta de matriz de inter
 
 
 
+[[basic-hardware-requirements]]
 === Requisitos básicos de hardware
 
 Existen varios requisitos de hardware comunes que se aplican a todas las plataformas, independientemente del tipo de instancia de nodo o de la oferta de licencia.
@@ -114,6 +120,7 @@ Existen varias configuraciones de Ethernet compatibles en función del tamaño d
 |===
 
 
+[[additional-hardware-requirements-based-on-the-instance-type]]
 === Requisitos de hardware adicionales en función del tipo de instancia
 
 Existen varios requisitos de hardware adicionales basados en el tipo de instancia de nodo.

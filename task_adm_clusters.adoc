@@ -18,6 +18,7 @@ Existen varias tareas relacionadas que puedes realizar para administrar un clús
 
 
 
+[[move-an-ontap-select-cluster-offline-and-online]]
 == Mover un clúster ONTAP Select a estado sin conexión y en línea
 
 Después de crear un clúster, puedes ponerlo fuera de línea y en línea según lo necesites.
@@ -40,6 +41,7 @@ Si la opción sin conexión no está disponible, el clúster ya está en estado 
 
 
 
+[[delete-an-ontap-select-cluster]]
 == Eliminar un clúster de ONTAP Select
 
 Puedes eliminar un clúster de ONTAP Select cuando ya no lo necesites.
@@ -59,6 +61,7 @@ Si la opción de eliminar no está disponible, entonces el clúster no está en 
 
 
 
+[[refresh-the-deploy-cluster-configuration]]
 == Actualiza la configuración del clúster de Deploy
 
 Después de crear un clúster ONTAP Select, puedes hacer cambios en el clúster o en la configuración de la máquina virtual fuera de la utilidad Deploy usando las herramientas de administración de ONTAP o del hipervisor. La configuración de una máquina virtual también puede cambiar después de que se migre.

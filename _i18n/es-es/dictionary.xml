@@ -2299,9 +2299,6 @@
   <block id="4ba59a7efee785c52f70cdae7fca55c3" category="list-text">A partir de ONTAP Select 9.17.1, la compatibilidad con vSAN Express Storage Architecture (ESA) se amplía para permitir la implementación de clústeres multinodo. Esta mejora te permite implementar configuraciones de vSAN ESA.</block>
   <block id="a8642b6a7959681743079d45db6cce81" category="paragraph">vSAN ESA es una configuración específica de ESXi y es una nueva arquitectura para VMware vSAN introducida en vSphere 8. vSAN ESA está diseñada para ofrecer mayor eficiencia, escalabilidad y rendimiento, especialmente cuando se usan dispositivos flash TLC basados en NVMe.</block>
   <block id="5481638e1ad922295838ce542f9aff38" category="paragraph">ONTAP Select Deploy y ONTAP Select para ESXi admiten la configuración de un clúster de un solo nodo y de varios nodos de ONTAP Select, usando un datastore de tipo vSAN o un array externo para su pool de almacenamiento.</block>
-  <block id="9f2987dffbb8cc07dc722392ca553e1e" category="paragraph">Para realizar operaciones en la biblioteca de contenidos, necesitarás acceso a niveles de permisos adicionales. Esto es necesario para las implementaciones de vSAN ESA si estás trabajando con roles restringidos.</block>
-  <block id="6146fd29f571a044684d201d9c796583" category="inline-link-macro">Conoce cómo acceder a los niveles de permisos para las operaciones de la biblioteca de contenidos</block>
-  <block id="23add99dd3b98f3716a4830bf3524c6e" category="paragraph"><block ref="0338668b24eba8707cba4da17831f4b6" category="inline-link-macro-rx"></block>.</block>
   <block id="8636e1dc9721a5c30a4e439da7b5f9a1" category="list-text">Soporte actualizado para controladores NDA</block>
   <block id="47a73413b58dd69883b3d5bfcaf3ae17" category="list-text">A partir de ONTAP Select 9.17.1, el controlador de dispositivo FreeBSD NDA (NVMe Direct Access) reemplaza al NVD (NVMe express disk driver). El controlador FreeBSD ofrece compatibilidad con dispositivos de acceso directo mediante la implementación del protocolo de comandos NVMe. Cuando implementas un clúster ONTAP Select 9.17.1 o actualizas un clúster ONTAP Select existente a la versión 9.17.1, el controlador FreeBSD se inicia de forma predeterminada cuando configuras los dispositivos NVMe.</block>
   <block id="9fe4db073ef9cb1070ea002413806d7b" category="paragraph">Para ONTAP Select 9.16.1 y versiones anteriores, el NVD continúa brindando soporte para dispositivos NVMe en tu implementación de ONTAP Select.</block>
@@ -2534,9 +2531,7 @@
   <block id="0322e46fade696f2e31f29923f0e13e7" category="paragraph">Deploy también debe poder comunicarse con las direcciones IP de administración del nodo y del clúster de ONTAP Select utilizando los siguientes protocolos:</block>
   <block id="62a5303a3a11fbd7213daedd9ed6e5b5" category="list-text">Comando PING (ICMP)</block>
   <block id="a808fd43c31372cb5ef7ac1ac9224c52" category="list-text">Debes asignar una dirección IPv4 a la LIF de administración de la máquina virtual Deploy.</block>
-  <block id="2e4143d0df24451229cbcf21d106b6c5" category="section-title">Consideraciones para el servidor VMware vCenter en ONTAP Select Deploy</block>
   <block id="0cdb970631a712b516a9779c1d127d32" category="section-title">Privilegios de VMware vSphere para ESA</block>
-  <block id="fe2a57ed0ddb8d9b57b737aff59f340b" category="paragraph">A continuación se enumeran los privilegios específicos para la vSphere biblioteca de contenidos que necesitas para crear y administrar vSAN Express Storage Architecture (ESA) en vCenter:</block>
   <block id="7fda80facd4b5302f2a2c887c2ecb595" category="list-text">Agregar elemento a la biblioteca</block>
   <block id="5ac2b813625b685d2cd86e5bbd2e2259" category="list-text">Crear biblioteca local</block>
   <block id="036e7b8c4bda5955184609f09f458e15" category="list-text">Eliminar elemento de la biblioteca</block>
@@ -2919,7 +2914,6 @@
   <block id="89c3bcf0ecc1114f8d19734d9156cb40" category="list-text">Aprovisionamiento</block>
   <block id="776c22edd71a94b798c726e47a0fce00" category="section-title">vApp</block>
   <block id="ee1aadb3a9fa619eb12db5d1e58032b4" category="inline-link-macro">Conoce los privilegios de VMware vSphere para vSAN ESA en vCenter</block>
-  <block id="653a421852b6e9fc7e8da536351d6d57" category="paragraph"><block ref="653a421852b6e9fc7e8da536351d6d57" category="inline-link-macro-rx"></block></block>
   <block id="694d40220902b22c12e6697b843de1d6" category="summary">Existen varios aspectos de planificación relacionados con el uso de VMware ESXi que debes tener en cuenta.</block>
   <block id="324bea2f11169e67c398f52f2473e586" category="doc">Requisitos de almacenamiento externo de VMware ESXi para ONTAP Select</block>
   <block id="bcee2262402cb4341eea3a827fc4df93" category="paragraph">ONTAP Select vNAS es una solución que permite que los almacenes de datos de ONTAP Select sean externos al host hipervisor ESXi donde se ejecuta la máquina virtual ONTAP Select. Estos almacenes de datos remotos se pueden acceder a través de VMware vSAN o una matriz de almacenamiento externa genérica.</block>
@@ -4058,4 +4052,11 @@
   <block id="609570e1a92256aa3f9b774f7dbf24fc" category="paragraph">Más información <block ref="4ae01b68125388898638ecb3eb2e59b7" category="inline-link-macro-rx"></block></block>
   <block id="d8818ebf9ca1095fb7a5372f4292243c" category="list-text">A partir de ONTAP Select 9.17.1, SnapMirror cloud es compatible con ONTAP Select. SnapMirror cloud no tiene licencia por defecto para ONTAP Select. Cuando despliegas un clúster ONTAP Select 9.17.1 o actualizas un clúster ONTAP Select existente a la versión 9.17.1, necesitas solicitar una licencia de SnapMirror cloud. Para más información, consulta <block ref="721bf771faed6cfbdee5aa217f7b1ff8" category="inline-link-macro-rx"></block>.</block>
   <block id="142f59b080f0f1bf1136c761bdeb20c0" category="list-text">A partir de ONTAP Select 9.17.1, las nuevas implementaciones tienen SnapLock Select (incluido el bloqueo de snapshots a prueba de manipulaciones) licenciado automáticamente. Para actualizaciones desde ONTAP Select 9.16.1 y anteriores, puedes descargar la licencia SnapLock Select gratis desde <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> y aplicarla manualmente. Para más información, consulta <block ref="c7da6e6f478f90eda131fcbe777888c9" category="inline-link-macro-rx"></block>.</block>
+  <block id="115b70fb63fe464e7cf86f17b11f1d67" category="paragraph">Para realizar operaciones en la biblioteca de contenidos, necesitas acceso a niveles de permiso adicionales. Este acceso es necesario para las implementaciones de vSAN ESA si trabajas con roles restringidos.</block>
+  <block id="b1689d890e3bfdba864c509e65029ab6" category="inline-link-macro">Conoce los niveles de acceso para las operaciones de Content Library</block>
+  <block id="420c43a81b06eb199719986301b88739" category="paragraph"><block ref="349cc67b5cd523e4bbe7acd476212356" category="inline-link-macro-rx"></block>.</block>
+  <block id="645dbfc8ae0a73e8087fbcb0a997027f" category="section-title">Aspectos a tener en cuenta sobre el servidor VMware vCenter</block>
+  <block id="3c877a9561264bd22f7ed715473c9258" category="paragraph">Para crear y gestionar vSAN Express Storage Architecture (ESA) en vCenter, necesitas los siguientes privilegios de la Content Library de vSphere:</block>
+  <block id="913b24f487842d48914e3794480e83cc" category="admonition">Para acceder a los privilegios de la Content Library, un administrador debe concederte acceso a los permisos globales en vCenter Server.</block>
+  <block id="c0d2cde9a14e7d58e2ab5a38de5b380d" category="paragraph"><block ref="c0d2cde9a14e7d58e2ab5a38de5b380d" category="inline-link-macro-rx"></block></block>
 </blocks>

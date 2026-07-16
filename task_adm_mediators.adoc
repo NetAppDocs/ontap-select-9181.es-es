@@ -18,6 +18,7 @@ Cada clúster de dos nodos de ONTAP Select está supervisado por el servicio med
 
 
 
+[[view-the-status-of-the-mediator-service]]
 == Ver el estado del servicio de mediador
 
 Puedes ver el estado del servicio de mediador con respecto a cada uno de los clústeres de dos nodos definidos para la utilidad ONTAP Select Deploy.

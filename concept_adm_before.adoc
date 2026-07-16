@@ -29,6 +29,7 @@ Hay varios procedimientos específicos de Deploy (como cambiar la contraseña de
 
 
 
+[[administer-ontap-select]]
 == Administrar ONTAP Select
 
 Hay muchos procedimientos administrativos diferentes disponibles como parte de la asistencia de ONTAP Select. Además, hay procedimientos específicos de la utilidad administrativa Deploy. Los más importantes de estos procedimientos se presentan a continuación. En general, todos utilizan la interfaz de usuario web de Deploy.
@@ -38,6 +39,7 @@ NOTE: También puedes link:https://docs.netapp.com/us-en/ontap-select/task_cli_s
 
 
 
+[[perform-additional-ontap-configuration]]
 == Realizar la configuración adicional de ONTAP
 
 Una vez desplegado un clúster ONTAP Select, puedes configurar y gestionar el clúster igual que lo harías con un sistema ONTAP basado en hardware. Por ejemplo, puedes usar ONTAP System Manager o la línea de comandos de ONTAP para configurar el clúster ONTAP Select.

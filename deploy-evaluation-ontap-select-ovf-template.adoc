@@ -19,7 +19,6 @@ Puedes implementar una instancia de evaluación de 90 días de un clúster de ON
 .Acerca de esta tarea
 * No es necesario obtener un número de serie ni una licencia de capacidad de almacenamiento de NetApp.
 * Puedes asignar la misma cantidad de almacenamiento para los datos de usuario que una licencia adquirida.
-* No se puede actualizar el nodo de una licencia de evaluación a una licencia comprada.
 * Sólo puedes usar una cuenta vCenter para desplegar la plantilla OVF. Actualmente no se admite la instalación directa en un host ESXi.
 * Debes instalar la plantilla OVF (contenida en un archivo ova) usando el cliente autónomo vSphere o el cliente web vSphere (la única opción para ESXi 8.0 y versiones posteriores). No usas la utilidad de administración ONTAP Select Deploy.
 
